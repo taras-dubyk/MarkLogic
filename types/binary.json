@@ -1,0 +1,12 @@
+{
+	"name": "binary",
+	"erdAbbreviation": "<bin>",
+	"dtdAbbreviation": "{BIN}",
+	"parentType": "binary",
+	"useSample": false,
+	"defaultValues": {
+		"default": "",
+		"enum": [],
+		"sample": ""
+	}
+}

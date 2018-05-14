@@ -1,0 +1,29 @@
+{
+	"name": "geoSpatial",
+	"erdAbbreviation": "<geo>",
+	"dtdAbbreviation": "{...}",
+	"parentType": "document",
+	"defaultValues": {
+		"relationshipType": "",
+		"parentRelationship": "",
+		"childRelationships": [],
+		"foreignCollection": "",
+		"foreignField": [],
+		"properties": [],
+		"dependencies": [],
+		"minProperties": "",
+		"maxProperties": "",
+		"additionalProperties": false,
+		"enum": [],
+		"subTypes": [
+			{ "name": "point", "snippet": "geoSpatial-point" },
+			{ "name": "linestring", "snippet": "geoSpatial-linestring" },
+			{ "name": "polygon", "snippet": "geoSpatial-polygon" },
+			{ "name": "multipoint", "snippet": "geoSpatial-multipoint" },
+			{ "name": "multilinestring", "snippet": "geoSpatial-multilinestring" },
+			{ "name": "multipolygon", "snippet": "geoSpatial-multipolygon" },
+			{ "name": "box", "snippet": "geoSpatial-box" },
+			{ "name": "circle", "snippet": "geoSpatial-circle" }
+		]
+	}
+}

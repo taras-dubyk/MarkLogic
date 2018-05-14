@@ -1,0 +1,27 @@
+{
+    "name": "MarkLogic",
+    "version": "0.0.1",
+    "versionDate": "2018-05-11",
+    "author": "hackolade",
+    "engines": {
+        "hackolade": "1.12.x",
+        "hackoladePlugin": "1.0.0"
+    },
+    "contributes": {
+        "target": {
+            "applicationTarget": "MARKLOGIC",
+            "title": "MarkLogic",
+            "versions": [
+				"7.x",
+				"8.x",
+				"9.x"
+			]
+        },
+        "features": {
+            "jaySchemaHasRequiredPatternField": true,
+            "nestedCollections": true
+        }
+    },
+    "description": "Hackolade plugin for MarkLogic",
+    "disabled": false
+}

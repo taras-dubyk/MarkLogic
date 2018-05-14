@@ -1,0 +1,17 @@
+{
+	"name": "quad",
+	"parentType": "document",
+	"properties": [{
+		"name": "quadName",
+		"type": "string"
+	},{
+		"name": "subject",
+		"type": "string"
+	}, {
+		"name": "predicate",
+		"type": "string"
+	}, {
+		"name": "object",
+		"type": "document"
+	}]
+}

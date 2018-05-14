@@ -1,0 +1,91 @@
+{
+	"model": {
+		"modelName": "New model",
+		"dbVersion": "9.x",
+		"dbVendor": "MarkLogic"
+	},
+	"container": {
+		"name": "New database",
+		"dataEncryption": "off",
+		"language": "en",
+		"stemmedSearches": "off",
+		"wordSearches": true,
+		"wordPositions": false,
+		"fastPhraseSearches": true,
+		"fastReverseSearches": false,
+		"tripleIndex": true,
+		"triplePositions": false,
+		"fastCaseSensitiveSearches": true,
+		"fastdiacriticSensitiveSearches": true,
+		"fastElementWordSearches": true,
+		"elementWordPositions": false,
+		"fastElementPhraseSearches": true,
+		"elementValuePositions": false,
+		"attributeValuePositions": false,
+		"fieldValueSearches": false,
+		"fieldValuePositions": false,
+		"threeCharacterSearches": false,
+		"threeCharacterWordPositions": false,
+		"fastElementCharacterSearches": false,
+		"trailingWildcardSearches": false,
+		"trailingWildcardWordPositions": false,
+		"fastElementTrailingWildcardSearches": false,
+		"twoCharacterSearches": false,
+		"oneCharacterSearches": false,
+		"uriLexicon": true,
+		"collectionLexicon": true,
+		"reindexerEnable": true,
+		"reindexerThrottle": "5",
+		"reindexerTimestamp": 0,
+		"directoryCreation": "manual",
+		"maintainLastModified": false,
+		"maintainDirectoryLastModified": false,
+		"inheritPermissions": false,
+		"inheritCollections": false,
+		"inheritQuality": false,
+		"inMemoryLimit": 174080,
+		"inMemoryListSize": 341,
+		"inMemoryTreeSize": 85,
+		"inMemoryRangeIndexSize": 11,
+		"inMemoryReverseIndexSize": 11,
+		"inMemoryTripleIndexSize": 44,
+		"inMemoryGeospatialRegionIndexSize": 11,
+		"largeSizeThreshold": 1024,
+		"locking": "fast",
+		"journaling": "fast",
+		"journalSize": 682,
+		"preallocateJournals": false,
+		"preloadMappedData": false,
+		"preloadReplicaMappedData": false,
+		"rangeIndexOptimize": "facet-time",
+		"positionsListMaxSize": 256,
+		"formatCompatibility": "automatic",
+		"indexDetection": "automatic",
+		"expungeLocks": "none",
+		"tfNormalization": "scaled-log",
+		"rebalancerEnable": true,
+		"rebalancerThrottle": 5,
+		"assignmentPolicy": "bucket"
+	},
+	"collection": {
+		"collectionName": "New collection"
+	},
+	"field": {
+		"name": "New field"
+	},
+	"patternField": {
+		"name": "^[a-zA-Z0-9_.-]{20}$"
+	},
+	"multipleField": {
+		"primaryKey": false
+	},
+	"subschema": {},
+	"arrayItem": {},
+	"choice": {},
+	"relationship": {},
+	"user": {},
+	"view": {
+		"viewOn": "",
+		"pipeline": ""
+	}
+}

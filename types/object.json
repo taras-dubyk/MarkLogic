@@ -1,0 +1,21 @@
+{
+	"name": "object",
+	"erdAbbreviation": "<obj>",
+	"dtdAbbreviation": "{...}",
+	"parentType": "document",
+	"relatedTo": ["string"],
+	"defaultValues": {
+		"primaryKey": false,
+		"relationshipType": "",
+		"parentRelationship": "",
+		"childRelationships": [],
+		"foreignCollection": "",
+		"foreignField": [],
+		"properties": [],
+		"dependencies": [],
+		"minProperties": "",
+		"maxProperties": "",
+		"additionalProperties": false,
+		"enum": []
+	}
+}

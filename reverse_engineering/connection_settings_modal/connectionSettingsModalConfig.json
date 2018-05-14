@@ -1,0 +1,87 @@
+[
+	{
+		"lowerTab": "Connection",
+		"structure": [
+			{
+				"inputLabel": "Name",
+				"inputKeyword": "name",
+				"inputType": "text",
+				"inputPlaceholder": "Name"
+				
+			},
+			{
+				"inputLabel": "Host",
+				"inputKeyword": "host",
+				"inputType": "text",
+				"defaultValue": "localhost"
+			},
+			{
+				"inputLabel": "Port",
+				"inputKeyword": "port",
+				"inputType": "numeric",
+				"defaultValue": "8000"
+			}
+		]
+	},
+	{
+		"lowerTab": "Authentication",
+		"structure": [
+			{
+				"inputLabel": "Connection type",
+				"inputKeyword": "connectionType",
+				"inputType": "select",
+				"description": "",
+				"options": [{
+					"value": "basic", 
+					"label": "basic"
+				}, {
+					"value": "digest",
+					"label": "digest"
+				}, {
+					"value": "digest-basic",
+					"label": "digest-basic"
+				}, {
+					"value": "application-level",
+					"label": "application-level"
+				}, {
+					"value": "kerberos-ticket",
+					"label": "kerberos-ticket"
+				}],
+				"defaultValue": "basic" 
+			},
+			{
+				"inputLabel": "User Name",
+				"inputKeyword": "username",
+				"inputType": "text",
+				"inputPlaceholder": "User Name"
+				
+			},
+			{
+				"inputLabel": "Password",
+				"inputKeyword": "password",
+				"inputType": "password",
+				"inputTooltip": "Password",
+				"isHiddenKey": true,
+				"defaultValue": ""
+			}
+		]
+	},
+	{
+		"lowerTab": "SSL",
+		"structure": [
+			{
+				"inputLabel": "Enable SSL",
+				"inputKeyword": "is_ssl",
+				"inputType": "checkbox"
+				
+			},
+			{
+				"inputLabel": "Authority Certificate",
+				"inputKeyword": "ca",
+				"inputType": "file",
+				"extensions": ["pem", "crt", "key"],
+				"isHiddenKey": true
+			}
+		]
+	}
+]

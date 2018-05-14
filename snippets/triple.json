@@ -1,0 +1,14 @@
+{
+	"name": "triple",
+	"parentType": "document",
+	"properties": [{
+		"name": "subject",
+		"type": "string"
+	}, {
+		"name": "predicate",
+		"type": "string"
+	}, {
+		"name": "object",
+		"type": "document"
+	}]
+}

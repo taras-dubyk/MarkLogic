@@ -1,0 +1,17 @@
+{
+	"name": "quad",
+	"erdAbbreviation": "<quad>",
+	"dtdAbbreviation": "{quad}",
+	"parentType": "document",
+	"defaultValues": {
+		"properties": [],
+		"dependencies": [],
+		"minProperties": "4",
+		"maxProperties": "4",
+		"additionalProperties": false,
+		"enum": [],
+		"subTypes": [
+			{ "name": "object", "snippet": "quad" }
+		]
+	}
+}

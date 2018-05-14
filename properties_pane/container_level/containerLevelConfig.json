@@ -1,0 +1,666 @@
+/*
+* Copyright © 2016-2017 by IntegrIT S.A. dba Hackolade.  All rights reserved.
+*
+* The copyright to the computer software herein is the property of IntegrIT S.A.
+* The software may be used and/or copied only with the written permission of 
+* IntegrIT S.A. or in accordance with the terms and conditions stipulated in 
+* the agreement/contract under which the software has been supplied. 
+
+
+In order to define custom properties for any object's properties pane, you may copy/paste from the following,
+making sure that you maintain a proper JSON format.
+
+			{
+				"propertyName": "Simple text",
+				"propertyKeyword": "simpletextProp",
+				"shouldValidate": false,
+				"propertyType": "text",
+				"sampleGen": "&containerName|&entityName|&random|<value>"
+			},
+			{
+				"propertyName": "Text area",
+				"propertyKeyword": "textareaProp",
+				"propertyValidate": false,
+				"propertyTooltip": "Popup for multi-line text entry",
+				"propertyType": "details",
+				"template": "textarea"
+			},
+			{
+				"propertyName": "Dropdown selection",
+				"propertyKeyword": "dropdownProp",
+				"shouldValidate": false,
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"Option 1",
+					"Option 2",
+					"Option 3",
+					"Option 4"
+				]
+			},
+			{
+				"propertyName": "Numeric",
+				"propertyKeyword": "numericProp",
+				"propertyValidate": true,
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false,
+				"sampleGen": "&containerName|&entityName|&random|<value>"
+			},
+			{
+				"propertyName": "Checkbox",
+				"propertyKeyword": "checkboxProp",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Group",
+				"propertyType": "group",
+				"propertyKeyword": "grpProp",
+				"shouldValidate": true,
+				"propertyTooltip": "",
+				"structure": [
+					{
+						"propertyName": "Simple Grp Text",
+						"propertyKeyword": "simpleGrpText",
+						"shouldValidate": false,
+						"propertyTooltip": "",
+						"propertyType": "text"
+					},
+					{
+						"propertyName": "Group Number",
+						"propertyKeyword": "grpNumber",
+						"propertyValidate": true,
+						"propertyType": "numeric",
+						"valueType": "number",
+						"allowNegative": false
+					}
+				]
+			}
+
+*/
+
+[
+	{
+		"lowerTab": "Details",
+		"containerLevelKeys": [{
+			"labelName": "Descriptor metadata",
+			"propertyName": "Key",
+			"propertyKeyword": "uri",
+			"defaultName": "uri",
+			"propertyPrimaryKey": true,
+			"propertyType": "text",
+			"typeName": "Data type",
+			"typeOptions": [
+				"string"
+			],
+			"defaultType": "string",
+			"disabledFieldOption": true,
+			"sampleGen": "&entityName"
+		},{
+			"propertyName": "Format",
+			"propertyKeyword": "format",
+			"defaultName": "format",
+			"propertyPrimaryKey": false,
+			"propertyType": "text",
+			"typeName": "Data type",
+			"typeOptions": [
+				"string"
+			],
+			"defaultType": "string",
+			"disabledFieldOption": true,
+			"sampleGen": "json"
+		},{
+			"propertyName": "Content type",
+			"propertyKeyword": "contentType",
+			"defaultName": "contentType",
+			"propertyPrimaryKey": false,
+			"propertyType": "text",
+			"typeName": "Data type",
+			"typeOptions": [
+				"string"
+			],
+			"defaultType": "string",
+			"disabledFieldOption": true,
+			"sampleGen": "application/json"
+		},{
+			"labelName": "Content",
+			"propertyName": "content",
+			"propertyKeyword": "content",
+			"defaultName": "content",
+			"propertyPrimaryKey": false,
+			"propertyType": "text",
+			"valueType": "object",
+			"typeName": "Data type",
+			"typeOptions": [
+				"object"
+			],
+			"defaultType": "object",
+			"disabledFieldOption": true,
+			"underERDDivider": true
+		}],
+		"structure": [
+			{
+				"propertyName": "Description",
+				"propertyKeyword": "description",
+				"shouldValidate": false,
+				"propertyTooltip": "description",
+				"propertyType": "details",
+				"template": "textarea"
+			},
+			{
+				"propertyName": "Security database",
+				"propertyKeyword": "securityDB",
+				"shouldValidate": false,
+				"propertyType": "text"
+			},
+			{
+				"propertyName": "Schema database",
+				"propertyKeyword": "schemaDB",
+				"shouldValidate": false,
+				"propertyType": "text"
+			},
+			{
+				"propertyName": "Triggers database",
+				"propertyKeyword": "triggersDB",
+				"shouldValidate": false,
+				"propertyType": "text"
+			},
+			{
+				"propertyName": "Data encryption",
+				"propertyKeyword": "dataEncryption",
+				"shouldValidate": false,
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"default-cluster",
+					"on",
+					"off"
+				]
+			},
+			{
+				"propertyName": "Language",
+				"propertyKeyword": "language",
+				"shouldValidate": false,
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"ar",
+					"de",
+					"en",
+					"es",
+					"fa",
+					"fr",
+					"it",
+					"ja",
+					"ko",
+					"nb",
+					"nb",
+					"nl",
+					"pt",
+					"ru",
+					"sv",
+					"zh",
+					"zh-Hant"
+				]
+			},
+			{
+				"propertyName": "Stemmed searches",
+				"propertyKeyword": "stemmedSearches",
+				"shouldValidate": false,
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"off",
+					"basic",
+					"advanced",
+					"decoumpounding"
+				]
+			},
+			{
+				"propertyName": "Word searches",
+				"propertyKeyword": "wordSearches",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Word positions",
+				"propertyKeyword": "wordPositions",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Fast phrase searches",
+				"propertyKeyword": "fastPhraseSearches",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Fast reverse searches",
+				"propertyKeyword": "fastReverseSearches",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Triple index",
+				"propertyKeyword": "tripleIndex",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Triple positions",
+				"propertyKeyword": "triplePositions",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Fast case sensitive searches",
+				"propertyKeyword": "fastCaseSensitiveSearches",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Fast diacritic sensitive searches",
+				"propertyKeyword": "fastdiacriticSensitiveSearches",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Fast element word searches",
+				"propertyKeyword": "fastElementWordSearches",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Element word positions",
+				"propertyKeyword": "elementWordPositions",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Fast element phrase searches",
+				"propertyKeyword": "fastElementPhraseSearches",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Element value positions",
+				"propertyKeyword": "elementValuePositions",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Attribute value positions",
+				"propertyKeyword": "attributeValuePositions",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Field value searches",
+				"propertyKeyword": "fieldValueSearches",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Field value positions",
+				"propertyKeyword": "fieldValuePositions",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Three character searches",
+				"propertyKeyword": "threeCharacterSearches",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Three character word positions",
+				"propertyKeyword": "threeCharacterWordPositions",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Fast element character searches",
+				"propertyKeyword": "fastElementCharacterSearches",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Trailing wildcard searches",
+				"propertyKeyword": "trailingWildcardSearches",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Trailing wildcard word positions",
+				"propertyKeyword": "trailingWildcardWordPositions",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Fast element trailing wildcard searches",
+				"propertyKeyword": "fastElementTrailingWildcardSearches",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Two character searches",
+				"propertyKeyword": "twoCharacterSearches",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "One character searches",
+				"propertyKeyword": "oneCharacterSearches",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "URI lexicon",
+				"propertyKeyword": "uriLexicon",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Collection lexicon",
+				"propertyKeyword": "collectionLexicon",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Reindexer enable",
+				"propertyKeyword": "reindexerEnable",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Reindexer throttle",
+				"propertyKeyword": "reindexerThrottle",
+				"shouldValidate": false,
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"1",
+					"2",
+					"3",
+					"4",
+					"5"
+				]
+			},
+			{
+				"propertyName": "Reindexer timestamp",
+				"propertyKeyword": "reindexerTimestamp",
+				"propertyValidate": true,
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false
+			},
+			{
+				"propertyName": "Directory creation",
+				"propertyKeyword": "directoryCreation",
+				"shouldValidate": false,
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"automatic",
+					"manual-enforced",
+					"manual"
+				]
+			},
+			{
+				"propertyName": "Maintain last modified",
+				"propertyKeyword": "maintainLastModified",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Maintain directory last modified",
+				"propertyKeyword": "maintainDirectoryLastModified",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Inherit permissions",
+				"propertyKeyword": "inheritPermissions",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Inherit collections",
+				"propertyKeyword": "inheritCollections",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Inherit quality",
+				"propertyKeyword": "inheritQuality",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "In memory limit",
+				"propertyKeyword": "inMemoryLimit",
+				"propertyValidate": true,
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false
+			},
+			{
+				"propertyName": "In memory list size",
+				"propertyKeyword": "inMemoryListSize",
+				"propertyValidate": true,
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false
+			},
+			{
+				"propertyName": "In memory tree size",
+				"propertyKeyword": "inMemoryTreeSize",
+				"propertyValidate": true,
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false
+			},
+			{
+				"propertyName": "In memory range index size",
+				"propertyKeyword": "inMemoryRangeIndexSize",
+				"propertyValidate": true,
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false
+			},
+			{
+				"propertyName": "In memory reverse index size",
+				"propertyKeyword": "inMemoryReverseIndexSize",
+				"propertyValidate": true,
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false
+			},
+			{
+				"propertyName": "In memory triple index size",
+				"propertyKeyword": "inMemoryTripleIndexSize",
+				"propertyValidate": true,
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false
+			},
+			{
+				"propertyName": "In memory geospatial region index size",
+				"propertyKeyword": "inMemoryGeospatialRegionIndexSize",
+				"propertyValidate": true,
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false
+			},
+			{
+				"propertyName": "Large size threshold",
+				"propertyKeyword": "largeSizeThreshold",
+				"propertyValidate": true,
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false
+			},
+			{
+				"propertyName": "Locking",
+				"propertyKeyword": "locking",
+				"shouldValidate": false,
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"strict",
+					"fast",
+					"off"
+				]
+			},
+			{
+				"propertyName": "Journaling",
+				"propertyKeyword": "journaling",
+				"shouldValidate": false,
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"strict",
+					"fast",
+					"off"
+				]
+			},
+			{
+				"propertyName": "Journal size",
+				"propertyKeyword": "journalSize",
+				"propertyValidate": true,
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false
+			},
+			{
+				"propertyName": "Preallocate journals",
+				"propertyKeyword": "preallocateJournals",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Preload mapped data",
+				"propertyKeyword": "preloadMappedData",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Preload replica mapped data",
+				"propertyKeyword": "preloadReplicaMappedData",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Range index optimize",
+				"propertyKeyword": "rangeIndexOptimize",
+				"shouldValidate": false,
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"facet-time",
+					"memory-size"
+				]
+			},
+			{
+				"propertyName": "Positions list max size",
+				"propertyKeyword": "positionsListMaxSize",
+				"propertyValidate": true,
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false
+			},
+			{
+				"propertyName": "Format compatibility",
+				"propertyKeyword": "formatCompatibility",
+				"shouldValidate": false,
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"automatic",
+					"5.0",
+					"4.2"
+				]
+			},
+			{
+				"propertyName": "Index detection",
+				"propertyKeyword": "indexDetection",
+				"shouldValidate": false,
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"automatic",
+					"none"
+				]
+			},
+			{
+				"propertyName": "Expunge locks",
+				"propertyKeyword": "expungeLocks",
+				"shouldValidate": false,
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"automatic",
+					"none"
+				]
+			},
+			{
+				"propertyName": "TF normalization",
+				"propertyKeyword": "tfNormalization",
+				"shouldValidate": false,
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"unscaled-log",
+					"weakest-scaled-log",
+					"weakly-scaled-log",
+					"moderately-scaled-log",
+					"strongly-scaled-log",
+					"scaled-log"
+				]
+			},
+			{
+				"propertyName": "Rebalancer enable",
+				"propertyKeyword": "rebalancerEnable",
+				"shouldValidate": false,
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Rebalancer throttle",
+				"propertyKeyword": "rebalancerThrottle",
+				"shouldValidate": false,
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"1",
+					"2",
+					"3",
+					"4",
+					"5"
+				]
+			},
+			{
+				"propertyName": "Assignment policy",
+				"propertyKeyword": "assignmentPolicy",
+				"shouldValidate": false,
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"bucket",
+					"statistical",
+					"range",
+					"legacy",
+					"query"
+				]
+			},
+			{
+				"propertyName": "Comments",
+				"propertyKeyword": "comments",
+				"shouldValidate": false,
+				"propertyTooltip": "comments",
+				"propertyType": "details",
+				"template": "textarea"
+			}
+		]
+	}
+]

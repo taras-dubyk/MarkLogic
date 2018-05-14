@@ -1,0 +1,18 @@
+{
+	"name": "triple",
+	"erdAbbreviation": "<trpl>",
+	"dtdAbbreviation": "{trpl}",
+	"parentType": "document",
+	"defaultValues": {
+		"name": "triple",
+		"properties": [],
+		"dependencies": [],
+		"minProperties": "3",
+		"maxProperties": "3",
+		"additionalProperties": false,
+		"enum": [],
+		"subTypes": [
+			{ "name": "object", "snippet": "triple" }
+		]
+	}
+}
