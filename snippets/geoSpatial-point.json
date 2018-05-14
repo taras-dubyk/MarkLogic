@@ -1,6 +1,6 @@
 {
 	"name": "geoSpatial-point",
-	"parentType": "document",
+	"parentType": "object",
 	"properties": [{
 		"name": "type",
 		"type": "string",

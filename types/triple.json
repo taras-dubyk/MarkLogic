@@ -11,8 +11,6 @@
 		"maxProperties": "3",
 		"additionalProperties": false,
 		"enum": [],
-		"subTypes": [
-			{ "name": "object", "snippet": "triple" }
-		]
+		"snippet": "triple"
 	}
 }
