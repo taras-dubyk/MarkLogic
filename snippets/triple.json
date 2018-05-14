@@ -1,6 +1,6 @@
 {
 	"name": "triple",
-	"parentType": "object",
+	"parentType": "document",
 	"properties": [{
 		"name": "subject",
 		"type": "string",

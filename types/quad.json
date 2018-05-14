@@ -6,8 +6,8 @@
 	"defaultValues": {
 		"properties": [],
 		"dependencies": [],
-		"minProperties": "4",
-		"maxProperties": "4",
+		"minProperties": 4,
+		"maxProperties": 4,
 		"additionalProperties": false,
 		"enum": [],
 		"snippet": "quad"
