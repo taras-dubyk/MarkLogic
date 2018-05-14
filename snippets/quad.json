@@ -1,6 +1,6 @@
 {
 	"name": "quad",
-	"parentType": "object",
+	"parentType": "document",
 	"properties": [{
 		"name": "quadName",
 		"type": "string",
