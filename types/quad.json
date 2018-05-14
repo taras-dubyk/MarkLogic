@@ -10,8 +10,6 @@
 		"maxProperties": "4",
 		"additionalProperties": false,
 		"enum": [],
-		"subTypes": [
-			{ "name": "object", "snippet": "quad" }
-		]
+		"snippet": "quad"
 	}
 }

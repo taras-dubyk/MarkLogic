@@ -147,6 +147,14 @@ making sure that you maintain a proper JSON format.
 		"triple": "document",
 		"quad": "document",
 		"___2": [],
-		"geoSpatial": "document"
+		"geoSpatial": [
+			"name",
+			"schemaId",
+			"type",
+			"description",
+			"required",
+			"comments",
+			"subtype"
+		]
 	}
 }
