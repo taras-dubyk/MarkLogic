@@ -96,7 +96,7 @@ making sure that you maintain a proper JSON format.
 			],
 			"defaultType": "string",
 			"disabledFieldOption": true,
-			"sampleGen": "&entityName"
+			"sampleGen": "/&entityName/&random.json"
 		},{
 			"propertyName": "Format",
 			"propertyKeyword": "format",
