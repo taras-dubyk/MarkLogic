@@ -1,10 +1,10 @@
 {
     "name": "MarkLogic",
-    "version": "0.0.1",
-    "versionDate": "2018-05-11",
+    "version": "0.1.0",
+    "versionDate": "2018-05-16",
     "author": "hackolade",
     "engines": {
-        "hackolade": "1.12.x",
+        "hackolade": "1.12.11",
         "hackoladePlugin": "1.0.0"
     },
     "contributes": {

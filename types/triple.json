@@ -7,12 +7,10 @@
 		"name": "triple",
 		"properties": [],
 		"dependencies": [],
-		"minProperties": "3",
-		"maxProperties": "3",
+		"minProperties": 3,
+		"maxProperties": 3,
 		"additionalProperties": false,
 		"enum": [],
-		"subTypes": [
-			{ "name": "object", "snippet": "triple" }
-		]
+		"snippet": "triple"
 	}
 }

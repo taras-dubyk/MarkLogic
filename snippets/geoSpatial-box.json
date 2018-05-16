@@ -1,5 +1,5 @@
 {
-	"name": "geoSpatial-envelope",
+	"name": "geoSpatial-box",
 	"parentType": "document",
 	"properties": [{
 		"name": "type",
