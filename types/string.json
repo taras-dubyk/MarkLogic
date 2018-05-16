@@ -3,6 +3,7 @@
 	"erdAbbreviation": "<str>",
 	"dtdAbbreviation": "{ABC}",
 	"useSample": true,
+	"sample": "",
 	"defaultValues": {
 		"minLength": "",
 		"maxLength": "",
@@ -16,5 +17,10 @@
 		"foreignField": [],
 		"enum": [],
 		"sample": ""
+	},
+	"format": {
+		"uri": {
+			"sample": "/&entityName/&random.json"
+		}
 	}
 }
