@@ -16,5 +16,10 @@
 		"foreignField": [],
 		"enum": [],
 		"sample": ""
+	},
+	"format": {
+		"uri": {
+			"sample": "/&entityName/&random.json"
+		}
 	}
 }
