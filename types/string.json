@@ -3,7 +3,6 @@
 	"erdAbbreviation": "<str>",
 	"dtdAbbreviation": "{ABC}",
 	"useSample": true,
-	"sample": "",
 	"defaultValues": {
 		"minLength": "",
 		"maxLength": "",
