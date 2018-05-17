@@ -69,7 +69,7 @@
 	},
 	"collection": {
 		"collectionName": "New collection",
-		"collection"
+		"storeAsCollDir": "collection"
 	},
 	"field": {
 		"name": "New field"
