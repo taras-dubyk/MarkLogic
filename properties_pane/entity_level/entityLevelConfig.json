@@ -102,6 +102,57 @@ making sure that you maintain a proper JSON format.
 				]
 			},
 			{
+				"propertyName": "Collections",
+				"propertyType": "group",
+				"propertyKeyword": "collRefs",
+				"shouldValidate": true,
+				"propertyTooltip": "",
+				"structure": [
+					{
+						"propertyName": "",
+						"propertyKeyword": "collectionName",
+						"shouldValidate": false,
+						"propertyTooltip": "",
+						"propertyType": "text"
+					}
+				]
+			},
+			{
+				"propertyName": "Permissions",
+				"propertyKeyword": "permissions",
+				"propertyType": "empty"
+			},
+			{
+				"propertyName": "Roles",
+				"propertyType": "group",
+				"propertyKeyword": "roles",
+				"shouldValidate": true,
+				"propertyTooltip": "",
+				"structure": [
+					{
+						"propertyName": "",
+						"propertyKeyword": "roleName",
+						"shouldValidate": false,
+						"propertyTooltip": "",
+						"propertyType": "text"
+					}
+				]
+			},
+			{
+				"propertyName": "Document permissions",
+				"propertyKeyword": "docpermissions",
+				"shouldValidate": false,
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "multipleCheckboxSelect",
+				"options": [
+					"read",
+					"insert",
+					"update",
+					"node-update",
+					"execute"
+				]
+			},
+			{
 				"propertyName": "Comments",
 				"propertyKeyword": "comments",
 				"shouldValidate": false,
