@@ -99,7 +99,7 @@ making sure that you maintain a proper JSON format.
 			"sampleGen": "/&entityName/&random.json"
 		},{
 			"propertyName": "Format",
-			"propertyKeyword": "format",
+			"propertyKeyword": "_format",
 			"defaultName": "format",
 			"propertyPrimaryKey": false,
 			"propertyType": "text",
