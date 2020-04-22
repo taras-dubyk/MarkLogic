@@ -4,6 +4,7 @@
 	"dtdAbbreviation": "{quad}",
 	"parentType": "document",
 	"defaultValues": {
+		"name": "quad",
 		"properties": [],
 		"dependencies": [],
 		"minProperties": 4,
