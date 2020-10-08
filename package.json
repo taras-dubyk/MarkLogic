@@ -1,34 +1,35 @@
 {
-    "name": "MarkLogic",
-    "version": "0.1.6",
-    "versionDate": "2020-04-22",
-    "author": "hackolade",
-    "engines": {
-        "hackolade": "1.12.11",
-        "hackoladePlugin": "1.0.0"
+  "name": "MarkLogic",
+  "version": "0.1.6",
+  "versionDate": "2020-04-22",
+  "author": "hackolade",
+  "engines": {
+    "hackolade": "1.12.11",
+    "hackoladePlugin": "1.0.0"
+  },
+  "contributes": {
+    "target": {
+      "applicationTarget": "MARKLOGIC",
+      "title": "MarkLogic",
+      "versions": [
+        "7.x",
+        "8.x",
+        "9.x",
+        "10.x"
+      ]
     },
-    "contributes": {
-        "target": {
-            "applicationTarget": "MARKLOGIC",
-            "title": "MarkLogic",
-            "versions": [
-				"7.x",
-				"8.x",
-				"9.x"
-			]
-        },
-        "features": {
-            "jaySchemaHasRequiredPatternField": true,
-            "nestedCollections": true,
-            "enableReverseEngineering": {
-                "jsonDocument": true,
-                "jsonSchema": true,
-                "ddl": true,
-                "xsd": true,
-                "plugin": false
-            }
-        }
-    },
-    "description": "Hackolade plugin for MarkLogic",
-    "disabled": false
+    "features": {
+      "jaySchemaHasRequiredPatternField": true,
+      "nestedCollections": true,
+      "enableReverseEngineering": {
+        "jsonDocument": true,
+        "jsonSchema": true,
+        "ddl": true,
+        "xsd": true,
+        "plugin": true
+      }
+    }
+  },
+  "description": "Hackolade plugin for MarkLogic",
+  "disabled": false
 }
