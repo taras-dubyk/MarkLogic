@@ -31,56 +31,7 @@ module.exports = {
 	testConnection: function (connectionInfo, logger, cb, app) {
 		logInfo('Test connection', connectionInfo, logger);
 		this.connect(connectionInfo, logger, async (dbClient) => {
-			///
-			// const pets = [
-			// 	{ name: 'fish1', kind: 'fish' },
-			// 	{ name: 'fish2', kind: 'fish' },
-			// 	{ name: 'fish3', kind: 'fish' },
-			// 	{ name: 'fish4', kind: 'fish' }
-			//   ];
-			// const points = [{
-			// 	"myPoint": {
-			// 		"type": "point",
-			// 		"coordinates": [
-			// 			-65,
-			// 			4
-			// 		]
-			// 	},
-			// 	"myPoint": {
-			// 		"type": "point",
-			// 		"coordinates": [
-			// 			1,
-			// 			2
-			// 		]
-			// 	}
-			// }];
-			//   const collName = 'points';
-			//   await dbClient.createCollection(collName, points).result();
-					// const documents = [
-		const documents = [
-			{
-				uri: '/gs/kiness/mark.json',
-				content: {
-					name: 'Lviv',
-					address: 'lviv',
-					desc:
-						'The aardvark is a medium-sized burrowing, nocturnal mammal.',
-				},
-			},
-			{
-				uri: '/gs/kiness/twen.json',
-				content: {
-					name: 'Kyiv',
-					address: 'kyiv',
-					desc:
-						'The bluebird is a medium-sized, mostly insectivorous bird.',
-				},
-			}
-		];
-		////
-		
 			try {
-				await dbClient.documents.write(documents).result();
 				await dbClient.checkConnection().result();
 				logger.log('info', 'Connection successful', 'Test connection');
 				cb();
@@ -90,41 +41,6 @@ module.exports = {
 			}
 			this.disconnect(connectionInfo, () => {});
 		});
-
-		// const documents = [
-		// 	{
-		// 		uri: '/gs/address/mark.json',
-		// 		content: {
-		// 			name: 'Lviv',
-		// 			address: 'lviv',
-		// 			desc:
-		// 				'The aardvark is a medium-sized burrowing, nocturnal mammal.',
-		// 		},
-		// 	},
-		// 	{
-		// 		uri: '/gs/address/twen.json',
-		// 		content: {
-		// 			name: 'Kyiv',
-		// 			address: 'kyiv',
-		// 			desc:
-		// 				'The bluebird is a medium-sized, mostly insectivorous bird.',
-		// 		},
-		// 	}
-		// ];
-
-		// db.documents.write(documents).result(
-		// 	(response) => {
-		// 		console.log('Loaded the following documents:');
-		// 		response.documents.forEach(function (document) {
-		// 			console.log('  ' + document.uri);
-		// 		});
-		// 		cb();
-		// 	},
-		// 	(error) => {
-		// 		console.log(JSON.stringify(error, null, 2));
-		// 		cb(true);
-		// 	}
-		// );
 	},
 
 	getDbCollectionsNames: function(connectionInfo, logger, cb, app) {
