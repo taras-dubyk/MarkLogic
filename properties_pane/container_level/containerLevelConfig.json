@@ -133,10 +133,10 @@ making sure that you maintain a proper JSON format.
 			"valueType": "object",
 			"typeName": "Data type",
 			"typeOptions": [
-				"object"
+				"object",
+				"array"
 			],
 			"defaultType": "object",
-			"disabledFieldOption": true,
 			"underERDDivider": true,
 			"propertiesRoot": true
 		}],
