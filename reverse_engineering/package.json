@@ -6,7 +6,8 @@
   "dependencies": {
     "marklogic": "^2.4.2",
     "gulp-jsdoc3": "^1.0.1",
-    "bunyan": "^1.8.12"
+    "bunyan": "^1.8.12",
+    "ink-docstrap": "^1.1.4"
   },
   "installed": true
 }
