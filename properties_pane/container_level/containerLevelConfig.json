@@ -83,7 +83,8 @@ making sure that you maintain a proper JSON format.
 [
 	{
 		"lowerTab": "Details",
-		"containerLevelKeys": [{
+		"containerLevelKeys": [
+/*		{
 			"labelName": "Descriptor metadata",
 			"propertyName": "Key",
 			"propertyKeyword": "uri",
@@ -139,7 +140,9 @@ making sure that you maintain a proper JSON format.
 			"defaultType": "object",
 			"underERDDivider": true,
 			"propertiesRoot": true
-		}],
+		}
+*/
+		],
 		"structure": [
 			{
 				"propertyName": "Description",
@@ -167,6 +170,19 @@ making sure that you maintain a proper JSON format.
 				"shouldValidate": false,
 				"propertyType": "text"
 			},
+			{
+				"propertyName": "Comments",
+				"propertyKeyword": "comments",
+				"shouldValidate": false,
+				"propertyTooltip": "comments",
+				"propertyType": "details",
+				"template": "textarea"
+			}
+		]
+	},
+	{
+		"lowerTab": "Configuration",
+		"structure": [
 			{
 				"propertyName": "Data encryption",
 				"propertyKeyword": "dataEncryption",
@@ -653,14 +669,6 @@ making sure that you maintain a proper JSON format.
 					"legacy",
 					"query"
 				]
-			},
-			{
-				"propertyName": "Comments",
-				"propertyKeyword": "comments",
-				"shouldValidate": false,
-				"propertyTooltip": "comments",
-				"propertyType": "details",
-				"template": "textarea"
 			}
 		]
 	}
