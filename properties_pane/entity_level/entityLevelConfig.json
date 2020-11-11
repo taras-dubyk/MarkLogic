@@ -118,6 +118,27 @@ making sure that you maintain a proper JSON format.
 				]
 			},
 			{
+				"propertyName": "URI",
+				"propertyKeyword": "uri",
+				"propertyType": "text",
+				"propertyTooltip": "full URI of document",
+				"sampleGen": "/&entityName/&random.json"
+			},
+			{
+				"propertyName": "Content type",
+				"propertyKeyword": "contentType",
+				"propertyType": "text",
+				"propertyTooltip": "Example: application/json",
+				"sampleGen": "application/json"
+			},
+			{
+				"propertyName": "Format",
+				"propertyKeyword": "_format",
+				"propertyType": "text",
+				"propertyTooltip": "example: json",
+				"sampleGen": "json"
+			},
+			{
 				"propertyName": "Permissions",
 				"propertyKeyword": "permissions",
 				"propertyType": "empty"
