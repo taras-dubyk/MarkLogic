@@ -313,18 +313,6 @@ making sure that you maintain a proper JSON format.
 				"propertyType": "checkbox"
 			},
 			{
-				"propertyName": "Field value searches",
-				"propertyKeyword": "fieldValueSearches",
-				"shouldValidate": false,
-				"propertyType": "checkbox"
-			},
-			{
-				"propertyName": "Field value positions",
-				"propertyKeyword": "fieldValuePositions",
-				"shouldValidate": false,
-				"propertyType": "checkbox"
-			},
-			{
 				"propertyName": "Three character searches",
 				"propertyKeyword": "threeCharacterSearches",
 				"shouldValidate": false,

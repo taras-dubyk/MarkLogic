@@ -22,8 +22,6 @@
 		"fastElementPhraseSearches": true,
 		"elementValuePositions": false,
 		"attributeValuePositions": false,
-		"fieldValueSearches": false,
-		"fieldValuePositions": false,
 		"threeCharacterSearches": false,
 		"threeCharacterWordPositions": false,
 		"fastElementCharacterSearches": false,
