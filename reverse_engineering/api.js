@@ -12,6 +12,7 @@ const {
 	getDirectoryDocuments,
 	getEntityDataPackage,
 	setDocumentsOrganizationType,
+	getDBProperties
 } = require('./dbHelper');
 const { prepareError } = require('./generalHelper');
 const logHelper = require('./logHelper');
@@ -83,7 +84,7 @@ module.exports = {
 		setDependencies(app);
 		
 		const dbName = data.collectionData.dataBaseNames[0];
-		const entityNames = data.collectionData.collections[dbName];
+		const entityNames = data.collectionData.collections[dbName] || [];
 		const includeEmptyCollection = data.includeEmptyCollection;
 		const recordSamplingSettings = data.recordSamplingSettings;
 		const containerLevelKeys = {
@@ -96,6 +97,7 @@ module.exports = {
 		try {
 			const dbClient = getDBClient();
 			const documentOrganizationType = await getDocumentOrganizingType(dbClient);
+			const containerProperties = await getDBProperties(dbClient, dbName);
 			
 			const entityDataPromise = entityNames.map(async entityName => {
 				let documents;
@@ -118,7 +120,7 @@ module.exports = {
 			});
 
 			const entities = await Promise.all(entityDataPromise);
-			const entityDataPackage = getEntityDataPackage(entities, documentOrganizationType);
+			const entityDataPackage = getEntityDataPackage(entities, documentOrganizationType, containerProperties);
 
 			logger.progress({ message: 'Reverse-Engineering complete!', containerName: '', entityName: '' });
 			

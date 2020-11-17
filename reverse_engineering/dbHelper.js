@@ -3,6 +3,7 @@ const qb = marklogic.queryBuilder;
 const schemaHelper = require('./schemaHelper');
 let _;
 const { dependencies } = require('./appDependencies');
+const { getDBPropertiesConfig } = require('./dbPropertiesHelper');
 
 const DOCUMENTS_ORGANIZING_COLLECTIONS = 'collections';
 const DOCUMENTS_ORGANIZING_DIRECTORIES = 'directories';
@@ -79,7 +80,7 @@ const getDirectoryDocuments = async (directoryName, dbClient, recordSamplingSett
 	return documents.map(({ uri, format, content }) => ({ uri, format, content }));
 }
 
-const getEntityDataPackage = (entities, documentOrganizationType) => {
+const getEntityDataPackage = (entities, documentOrganizationType, containerProperties) => {
 	setDependencies(dependencies);
 	return entities.map(entity => {
 		let parentDirectoryName = '';
@@ -91,6 +92,9 @@ const getEntityDataPackage = (entities, documentOrganizationType) => {
 
 		return {
 			...entity,
+			bucketInfo: {
+				...containerProperties
+			},
 			validation: {
 				jsonSchema:	getEntityJSONSchema(documentTemplate, parentDirectoryName),
 			}
@@ -126,6 +130,30 @@ const setDocumentsOrganizationType = (type) => {
 	documentOrganizingType = type;
 }
 
+const getDBProperties = async (dbClient, dbName) => {
+	setDependencies(dependencies);
+
+	const propertiesConfig = getDBPropertiesConfig(dbName);
+
+	const defaultResponseMapper = (response) => {
+		return _.get(response, '[0].value');
+	}
+
+	const dbPropsData = await Promise.all(propertiesConfig.map(async item => {
+		const response = await dbClient.xqueryEval(item.query).result();
+
+		return {
+			keyword: item.keyword,
+			value: item.mapper ? item.mapper(response) : defaultResponseMapper(response),
+		};
+	}));
+
+	return dbPropsData.reduce((acc, item) => {
+		acc[item.keyword] = item.value;
+		return acc;
+	}, {});
+}
+
 module.exports = {
 	DOCUMENTS_ORGANIZING_COLLECTIONS,
 	DOCUMENTS_ORGANIZING_DIRECTORIES,
@@ -138,4 +166,5 @@ module.exports = {
 	getDirectoryDocuments,
 	getEntityDataPackage,
 	setDocumentsOrganizationType,
+	getDBProperties,
 };
