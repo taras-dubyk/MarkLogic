@@ -83,66 +83,6 @@ making sure that you maintain a proper JSON format.
 [
 	{
 		"lowerTab": "Details",
-		"containerLevelKeys": [
-/*		{
-			"labelName": "Descriptor metadata",
-			"propertyName": "Key",
-			"propertyKeyword": "uri",
-			"defaultName": "uri",
-			"propertyPrimaryKey": true,
-			"propertyType": "text",
-			"typeName": "Data type",
-			"typeOptions": [
-				"string"
-			],
-			"defaultType": "string",
-			"disabledFieldOption": true,
-			"sampleGen": "/&entityName/&random.json"
-		},{
-			"propertyName": "Format",
-			"propertyKeyword": "_format",
-			"defaultName": "format",
-			"propertyPrimaryKey": false,
-			"propertyType": "text",
-			"typeName": "Data type",
-			"typeOptions": [
-				"string"
-			],
-			"defaultType": "string",
-			"disabledFieldOption": true,
-			"sampleGen": "json"
-		},{
-			"propertyName": "Content type",
-			"propertyKeyword": "contentType",
-			"defaultName": "contentType",
-			"propertyPrimaryKey": false,
-			"propertyType": "text",
-			"typeName": "Data type",
-			"typeOptions": [
-				"string"
-			],
-			"defaultType": "string",
-			"disabledFieldOption": true,
-			"sampleGen": "application/json"
-		},{
-			"labelName": "Content",
-			"propertyName": "content",
-			"propertyKeyword": "content",
-			"defaultName": "content",
-			"propertyPrimaryKey": false,
-			"propertyType": "text",
-			"valueType": "object",
-			"typeName": "Data type",
-			"typeOptions": [
-				"object",
-				"array"
-			],
-			"defaultType": "object",
-			"underERDDivider": true,
-			"propertiesRoot": true
-		}
-*/
-		],
 		"structure": [
 			{
 				"propertyName": "Description",
