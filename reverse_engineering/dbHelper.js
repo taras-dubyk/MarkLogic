@@ -67,7 +67,7 @@ const getCollectionDocuments = async (collectionName, dbClient, recordSamplingSe
 			qb.collection(collectionName)
 		).slice(0, +recordSamplingSettings.absolute.value)
 	).result();
-	return documents.map(({ uri, format, content }) => ({ uri, format, content }));
+	return documents.map(({ content }) => (content));
 }
 
 const getDirectoryDocuments = async (directoryName, dbClient, recordSamplingSettings) => {
@@ -77,7 +77,7 @@ const getDirectoryDocuments = async (directoryName, dbClient, recordSamplingSett
 		).slice(0, +recordSamplingSettings.absolute.value)
 	).result();
 
-	return documents.map(({ uri, format, content }) => ({ uri, format, content }));
+	return documents.map(({ content }) => (content));
 }
 
 const getEntityDataPackage = (entities, documentOrganizationType, containerProperties) => {

@@ -88,12 +88,6 @@ module.exports = {
 		const entityNames = data.collectionData.collections[dbName] || [];
 		const includeEmptyCollection = data.includeEmptyCollection;
 		const recordSamplingSettings = data.recordSamplingSettings;
-		const containerLevelKeys = {
-			uri: 'uri',
-			_format: 'format',
-			contentType: 'contentType',
-			content: 'content'
-		};
 
 		try {
 			const dbClient = getDBClient();
@@ -117,11 +111,9 @@ module.exports = {
 					entityLevel: {
 						storeAsCollDir: DOCUMENTS_ORGANIZING_COLLECTIONS ? 'collection' : 'directory'
 					},
-					containerLevelKeys,
 				};
 			});
 
-			const entities = await Promise.all(entityDataPromise);
 			const entityDataPackage = getEntityDataPackage(entities, documentOrganizationType, containerProperties);
 
 			logger.progress({ message: 'Reverse-Engineering complete!', containerName: '', entityName: '' });
