@@ -17,6 +17,7 @@ const {
 const { prepareError } = require('./generalHelper');
 const logHelper = require('./logHelper');
 const { setDependencies } = require('./appDependencies');
+const { dependencies } = require('./appDependencies');
 
 module.exports = {
 	connect: function (connectionInfo, logger, cb) {
@@ -98,8 +99,9 @@ module.exports = {
 			const dbClient = getDBClient();
 			const documentOrganizationType = await getDocumentOrganizingType(dbClient);
 			const containerProperties = await getDBProperties(dbClient, dbName);
+			const maxFetchOperationsAtATime = 10;
 			
-			const entityDataPromise = entityNames.map(async entityName => {
+			const entities = await dependencies.async.mapLimit(entityNames, maxFetchOperationsAtATime, async entityName => {
 				let documents;
 				if (documentOrganizationType === DOCUMENTS_ORGANIZING_COLLECTIONS) {
 					documents = await getCollectionDocuments(entityName, dbClient, recordSamplingSettings);
