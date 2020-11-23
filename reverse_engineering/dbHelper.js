@@ -62,19 +62,46 @@ const getDocumentOrganizingType = async (dbClient = null) => {
 }
 
 const getCollectionDocuments = async (collectionName, dbClient, recordSamplingSettings) => {
-	const documents = await dbClient.documents.query(
-		qb.where(
-			qb.collection(collectionName)
-		).slice(0, +recordSamplingSettings.absolute.value)
-	).result();
-	return documents.map(({ content }) => (content));
+	const samplingCount = await getCollectionSamplingCount(collectionName, recordSamplingSettings);
+	const documents = await dbClient.documents
+		.query(
+			qb
+				.where(qb.collection(collectionName))
+				.slice(0, samplingCount)
+		)
+		.result();
+	return documents.map(({ content }) => content);
+}
+
+const getUndefinedCollectionDocuments = async (collectionNames, dbClient, recordSamplingSettings) => {
+	let documents;
+	if (collectionNames.length > 0) {
+		documents = await dbClient.documents
+			.query(
+				qb
+					.where(qb.not(qb.collection(...collectionNames)))
+					.slice(0, +recordSamplingSettings.absolute.value)
+			)
+			.result();
+	} else {
+		const samplingCount = await getDirectorySamplingCount('/', recordSamplingSettings, true);
+		documents = await dbClient.documents
+		.query(
+			qb
+				.where(qb.byExample({}))
+				.slice(0, samplingCount)
+		)
+		.result();
+	}
+	return documents.map(({ content }) => content);
 }
 
 const getDirectoryDocuments = async (directoryName, dbClient, recordSamplingSettings) => {
+	const samplingCount = await getDirectorySamplingCount(directoryName, recordSamplingSettings);
 	const documents = await dbClient.documents.query(
 		qb.where(
 			qb.directory(directoryName)
-		).slice(0, +recordSamplingSettings.absolute.value)
+		).slice(0, samplingCount)
 	).result();
 
 	return documents.map(({ content }) => (content));
@@ -154,6 +181,38 @@ const getDBProperties = async (dbClient, dbName) => {
 	}, {});
 }
 
+const getDirectorySamplingCount = async (directoryName, samplingSettings, recursive) => {
+	if (samplingSettings.active === 'absolute') {
+		return +samplingSettings.absolute.value;
+	} else {
+		const documentsCount = await getDirectoryDocumentsCount(directoryName, recursive);
+		return Math.round(documentsCount * samplingSettings.relative.value / 100);
+	}
+}
+
+const getCollectionSamplingCount = async (collectionName, samplingSettings) => {
+	if (samplingSettings.active === 'absolute') {
+		return +samplingSettings.absolute.value;
+	} else {
+		const documentsCount = await getCollectionDocumentsCount(collectionName);
+		return Math.round(documentsCount * samplingSettings.relative.value / 100);
+	}
+}
+
+const getCollectionDocumentsCount = async (collectionName) => {
+	const query = `xdmp:estimate(cts:search(doc(), cts:collection-query("${collectionName}")))`;
+	const response = await dbClient.xqueryEval(query).result();
+	return _.get(response, '[0].value');
+}
+
+const getDirectoryDocumentsCount = async (directoryName, recursive = false) => {
+	const query = recursive 
+		? `xdmp:estimate(cts:search(fn:doc(), cts:directory-query("${directoryName}", "infinity")))`
+		: `xdmp:estimate(cts:search(fn:doc(), cts:directory-query("${directoryName}")))`;
+	const response = await dbClient.xqueryEval(query).result();
+	return _.get(response, '[0].value');
+}
+
 module.exports = {
 	DOCUMENTS_ORGANIZING_COLLECTIONS,
 	DOCUMENTS_ORGANIZING_DIRECTORIES,
@@ -167,4 +226,5 @@ module.exports = {
 	getEntityDataPackage,
 	setDocumentsOrganizationType,
 	getDBProperties,
+	getUndefinedCollectionDocuments,
 };

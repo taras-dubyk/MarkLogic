@@ -12,12 +12,14 @@ const {
 	getDirectoryDocuments,
 	getEntityDataPackage,
 	setDocumentsOrganizationType,
-	getDBProperties
+	getDBProperties,
+	getUndefinedCollectionDocuments,
 } = require('./dbHelper');
 const { prepareError } = require('./generalHelper');
 const logHelper = require('./logHelper');
 const { setDependencies } = require('./appDependencies');
 const { dependencies } = require('./appDependencies');
+const UNDEFINED_COLLECTION_NAME = 'Documents with undefined collection';
 
 module.exports = {
 	connect: function (connectionInfo, logger, cb) {
@@ -54,6 +56,7 @@ module.exports = {
 				switch (connectionInfo.documentsOrganizing) {
 					case 'collections':
 						dbCollections = await getDBCollections(dbClient);
+						dbCollections.push(UNDEFINED_COLLECTION_NAME)
 						setDocumentsOrganizationType(DOCUMENTS_ORGANIZING_COLLECTIONS);
 						break;
 					case 'directories':
@@ -98,7 +101,12 @@ module.exports = {
 			const entities = await dependencies.async.mapLimit(entityNames, maxFetchOperationsAtATime, async entityName => {
 				let documents;
 				if (documentOrganizationType === DOCUMENTS_ORGANIZING_COLLECTIONS) {
-					documents = await getCollectionDocuments(entityName, dbClient, recordSamplingSettings);
+					if (entityName === UNDEFINED_COLLECTION_NAME) {
+						const collectionNames = await getDBCollections(dbClient);
+						documents = await getUndefinedCollectionDocuments(collectionNames, dbClient, recordSamplingSettings);
+					} else {
+						documents = await getCollectionDocuments(entityName, dbClient, recordSamplingSettings);
+					}
 				} else {
 					documents = await getDirectoryDocuments(entityName, dbClient, recordSamplingSettings);
 				}
@@ -106,7 +114,7 @@ module.exports = {
 				
 				return {
 					dbName,
-					collectionName: entityName,
+					collectionName: entityName  === UNDEFINED_COLLECTION_NAME ? 'Undefined collection' : entityName,
 					documents,
 					entityLevel: {
 						storeAsCollDir: DOCUMENTS_ORGANIZING_COLLECTIONS ? 'collection' : 'directory'
