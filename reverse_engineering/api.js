@@ -93,6 +93,7 @@ module.exports = {
 		const recordSamplingSettings = data.recordSamplingSettings;
 
 		try {
+			logger.progress({ message: 'Documents sampling started', containerName: dbName, entityName: '' });
 			const dbClient = getDBClient();
 			const documentOrganizationType = await getDocumentOrganizingType(dbClient);
 			const containerProperties = await getDBProperties(dbClient, dbName);
