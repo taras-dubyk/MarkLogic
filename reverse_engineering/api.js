@@ -54,20 +54,14 @@ module.exports = {
 			try {
 				let dbCollections = [];
 				switch (connectionInfo.documentsOrganizing) {
-					case 'collections':
-						dbCollections = await getDBCollections(dbClient);
-						dbCollections.push(UNDEFINED_COLLECTION_NAME)
-						setDocumentsOrganizationType(DOCUMENTS_ORGANIZING_COLLECTIONS);
-						break;
 					case 'directories':
 						dbCollections = await getDBDirectories(dbClient);
 						setDocumentsOrganizationType(DOCUMENTS_ORGANIZING_DIRECTORIES);
 						break;
 					default:
 						dbCollections = await getDBCollections(dbClient);
-						if (dbCollections.length === 0) {
-							dbCollections = await getDBDirectories(dbClient);
-						}
+						dbCollections.push(UNDEFINED_COLLECTION_NAME)
+						setDocumentsOrganizationType(DOCUMENTS_ORGANIZING_COLLECTIONS);
 				}
 
 				const result = [{

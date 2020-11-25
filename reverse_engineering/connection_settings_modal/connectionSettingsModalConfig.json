@@ -30,16 +30,13 @@
 				"inputType": "select",
 				"description": "",
 				"options": [{
-					"value": "auto", 
-					"label": "Auto detection"
-				}, {
 					"value": "collections",
 					"label": "Collections"
 				}, {
 					"value": "directories",
 					"label": "Directories"
 				}],
-				"defaultValue": "auto" 
+				"defaultValue": "collections" 
 			},
 			{
 				"inputLabel": "Database",
