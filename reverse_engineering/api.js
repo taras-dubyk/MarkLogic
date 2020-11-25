@@ -105,7 +105,7 @@ module.exports = {
 				} else {
 					documents = await getDirectoryDocuments(entityName, dbClient, recordSamplingSettings);
 				}
-				logger.progress({ message: 'Documents have loaded', containerName: dbName, entityName });
+				logger.progress({ message: 'Sample documents loaded', containerName: dbName, entityName });
 				
 				return {
 					dbName,
@@ -119,7 +119,7 @@ module.exports = {
 
 			const entityDataPackage = getEntityDataPackage(entities, documentOrganizationType, containerProperties);
 
-			logger.progress({ message: 'Reverse-Engineering complete!', containerName: '', entityName: '' });
+			logger.progress({ message: 'Reverse-Engineering completed', containerName: '', entityName: '' });
 			
 			cb(null, entityDataPackage);
 		} catch (err) {
