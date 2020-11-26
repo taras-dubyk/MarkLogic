@@ -136,7 +136,7 @@ making sure that you maintain a proper JSON format.
 				"propertyKeyword": "schemaUri",
 				"propertyType": "text",
 				"propertyTooltip": "Schema URI",
-				"fallbackValueKeyword": "collectionName",
+				"fallbackValueKeyword": ["code", "collectionName"],
 				"fallbackValueTemplate": "/${fallbackValue}.json"
 			},
 			{
