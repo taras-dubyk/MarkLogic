@@ -132,6 +132,14 @@ making sure that you maintain a proper JSON format.
 				"sampleGen": "json"
 			},
 			{
+				"propertyName": "Schema URI",
+				"propertyKeyword": "schemaUri",
+				"propertyType": "text",
+				"propertyTooltip": "Schema URI",
+				"fallbackValueKeyword": "collectionName",
+				"fallbackValueTemplate": "/${fallbackValue}.json"
+			},
+			{
 				"propertyName": "Permissions",
 				"propertyKeyword": "permissions",
 				"propertyType": "empty"
