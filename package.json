@@ -26,7 +26,13 @@
         "ddl": true,
         "xsd": true,
         "plugin": true
-      }
+      },
+      "enableForwardEngineering": {
+        "jsonDocument": true,
+        "jsonSchema": true,
+        "excel": true,
+        "plugin": true
+    }
     }
   },
   "description": "Hackolade plugin for MarkLogic",

@@ -1,0 +1,12 @@
+{
+	"extension": "js",
+	"filterName": "Query console JavaScript",
+	"namePrefix": "Marklogic",
+	"hasUpdateScript": false,
+	"resolvedDefinitions": true,
+	"applyScriptToInstance": true,
+	"level": {
+		"container": true,
+		"entity": false
+	}
+}
