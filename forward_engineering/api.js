@@ -127,7 +127,11 @@ const getProperties = properties => {
 }
 
 const getArrayItems = arrayItems => {
-	return arrayItems.map(getAdoptedSchema);
+	if (Array.isArray(arrayItems)) {
+		return arrayItems.map(getAdoptedSchema);
+	} else {
+		return getAdoptedSchema(arrayItems);
+	}
 }
 
 const getSchemaURI = schema => {
