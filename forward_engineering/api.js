@@ -28,6 +28,26 @@ module.exports = {
 		}
 	},
 
+	generateScript(data, logger, cb, app) {
+		setDependencies(app);
+		setLocalDependencies(dependencies);
+
+		let { jsonSchema, containerData } = data;
+		logger.clear();
+		try {
+			const schemasDatabaseStatement = getSchemasDatabaseAdditionalStatement(containerData.schemaDB);
+			const schemaStatement = getSchemaInsertStatement(getValidationSchemaData(JSON.parse(jsonSchema)));
+			const script = getStartStatements() + '\n\n' + schemasDatabaseStatement + '\n\n' + schemaStatement;
+			cb(null, script);
+		} catch(e) {
+			logger.log('error', { message: e.message, stack: e.stack }, 'Forward-Engineering Error');
+			setTimeout(() => {
+				cb({ message: e.message, stack: e.stack });
+			}, 150);
+			return;
+		}
+	},
+
 	async applyToInstance(data, logger, cb, app) {
 		try {
 			setDependencies(app);
@@ -39,15 +59,13 @@ module.exports = {
 				return cb({ message: 'Empty script' });
 			}
 
-			if (!data.containerData) {
-				return cb({ message: 'Empty container data' });
-			}
 			const containerProps = _.get(data.containerData, '[0]', {});
-			if (!containerProps.schemaDB) {
+			let schemaDB = containerProps.schemaDB || getParsedSchemasDatabase(data.script);
+			if (!schemaDB) {
 				return cb({ message: 'Schema database wasn\'t specified' });
 			}
 
-			const client = getDBClient(data, containerProps.schemaDB);
+			const client = getDBClient(data, schemaDB);
 			await applyScript(client, data.script);
 			cb();
 		} catch(err) {
@@ -145,7 +163,7 @@ const getSchemaURI = schema => {
 		}
 		return schemaUri;
 	} else {
-		const collectionName = schema.code || schema.collectionName;
+		const collectionName = schema.code || schema.collectionName || schema.title;
 		return `/${collectionName}.json`;
 	}
 }
@@ -174,6 +192,14 @@ const getChoices = schema => {
 	}
 	
 	return choices;
+}
+
+const getSchemasDatabaseAdditionalStatement = (databaseName) => {
+	return `// schemasDatabase=${databaseName}`;
+}
+
+const getParsedSchemasDatabase = script => {
+	return (script.match(/\/\/ schemasDatabase=(\w+)/) || [])[1];
 }
 
 const mapError = (error) => {
