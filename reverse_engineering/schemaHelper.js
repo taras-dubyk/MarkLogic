@@ -28,10 +28,10 @@ module.exports = {
 
 	getSchema(templateDocument, parentDirectory) {
 		setDependencies(dependencies);
-		const schema = this.getSchemaTemplate();
-
-		schema.properties = this.getServiceFields(templateDocument);
-		schema.properties.content = this.getType(templateDocument.content);
+		const schema = {
+			...this.getSchemaTemplate(),
+			...this.getType(templateDocument),
+		};
 
 		if (parentDirectory) {
 			schema.parentCollection = parentDirectory;
@@ -135,16 +135,6 @@ module.exports = {
 			return 'object';
 		}
 		return 'scalar';
-	},
-
-	getServiceFields(sample) {
-		const contentType = this.getValueType(sample.content);
-		if (contentType === 'array') {
-			return { content: { type: 'array', items: {} } };
-		}
-		return {
-			content: { type: 'object', properties: {} },
-		};
 	},
 
 	getSchemaFromSnippet(snippet) {
