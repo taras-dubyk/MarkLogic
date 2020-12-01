@@ -119,9 +119,11 @@ making sure that you maintain a proper JSON format.
 				"propertyName": "Schema URI",
 				"propertyKeyword": "schemaUri",
 				"propertyType": "text",
-				"propertyTooltip": "Schema URI",
+				"propertyTooltip": "Schema URI (/*.json)",
 				"fallbackValueKeyword": ["code", "collectionName"],
-				"fallbackValueTemplate": "/${fallbackValue}.json"
+				"fallbackValueTemplate": "/${fallbackValue}.json",
+				"shouldValidate": true,
+				"regex": "^\/[\\w]+[\\w .!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~]*\\.json$"
 			},
 			{
 				"propertyName": "Permissions",
