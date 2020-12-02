@@ -1,7 +1,7 @@
 {
   "name": "MarkLogic",
-  "version": "0.1.11",
-  "versionDate": "2020-12-01",
+  "version": "0.1.12",
+  "versionDate": "2020-12-02",
   "author": "hackolade",
   "engines": {
     "hackolade": "4.1.12",
