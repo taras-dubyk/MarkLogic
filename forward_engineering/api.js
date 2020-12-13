@@ -35,9 +35,13 @@ module.exports = {
 		let { jsonSchema, containerData } = data;
 		logger.clear();
 		try {
-			const schemasDatabaseStatement = getSchemasDatabaseAdditionalStatement(containerData.schemaDB);
+			const schemasDatabase = _.get(containerData,'schemaDB');
+			let schemasDatabaseStatement = ''
+			if(schemasDatabase){
+ 				schemasDatabaseStatement = '\n\n' + getSchemasDatabaseAdditionalStatement(schemasDatabase);
+			}
 			const schemaStatement = getSchemaInsertStatement(getValidationSchemaData(JSON.parse(jsonSchema)));
-			const script = getStartStatements() + '\n\n' + schemasDatabaseStatement + '\n\n' + schemaStatement;
+			const script = getStartStatements() +  schemasDatabaseStatement + '\n\n' + schemaStatement;
 			cb(null, script);
 		} catch(e) {
 			logger.log('error', { message: e.message, stack: e.stack }, 'Forward-Engineering Error');
