@@ -1,5 +1,6 @@
 const marklogic = require('marklogic');
 const qb = marklogic.queryBuilder;
+const fs = require('fs');
 const schemaHelper = require('./schemaHelper');
 let _;
 const { dependencies } = require('./appDependencies');
@@ -14,6 +15,13 @@ let documentOrganizingType = null;
 const setDependencies = ({ lodash }) => _ = lodash;
 
 const getDBClient = (connectionInfo) => {
+	let sslOptions = {};
+	if (connectionInfo.is_ssl) {
+		sslOptions = {
+			ssl: true,
+			...readCertificateFiles(connectionInfo),
+		};
+	}
 	if (!dbClient) {
 		dbClient = marklogic.createDatabaseClient({
 			host: connectionInfo.host,
@@ -21,6 +29,7 @@ const getDBClient = (connectionInfo) => {
 			user: connectionInfo.username,
 			password: connectionInfo.password,
 			...(connectionInfo.database && { database: connectionInfo.database }),
+			...sslOptions
 		});
 	}
 	return dbClient;
@@ -211,6 +220,20 @@ const getDirectoryDocumentsCount = async (directoryName, recursive = false) => {
 		: `xdmp:estimate(cts:search(fn:doc(), cts:directory-query("${directoryName}")))`;
 	const response = await dbClient.xqueryEval(query).result();
 	return _.get(response, '[0].value');
+}
+
+const readCertificateFiles = (connectionInfo) => {
+	const certificates = {};
+	if (connectionInfo.ca) {
+		certificates.ca = fs.readFileSync(connectionInfo.ca);
+	}
+	if (connectionInfo.sslCert) {
+		certificates.cert = fs.readFileSync(connectionInfo.sslCert);
+	}
+	if (connectionInfo.sslKey) {
+		certificates.key = fs.readFileSync(connectionInfo.sslKey);
+	}
+	return certificates;
 }
 
 module.exports = {

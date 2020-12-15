@@ -91,6 +91,20 @@
 				"inputType": "file",
 				"extensions": ["pem", "crt", "key"],
 				"isHiddenKey": true
+			},
+			{
+				"inputLabel": "Client Certificate",
+				"inputKeyword": "sslCert",
+				"inputType": "file",
+				"extensions": ["pem", "crt", "key"],
+				"isHiddenKey": true
+			},
+			{
+				"inputLabel": "Client Private Key",
+				"inputKeyword": "sslKey",
+				"inputType": "file",
+				"extensions": ["pem", "crt", "key"],
+				"isHiddenKey": true
 			}
 		]
 	}
