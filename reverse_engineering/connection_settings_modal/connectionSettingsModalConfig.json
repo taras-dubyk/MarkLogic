@@ -88,22 +88,19 @@
 			{
 				"inputLabel": "Authority Certificate",
 				"inputKeyword": "ca",
-				"inputType": "file",
-				"extensions": ["pem", "crt", "key"],
+				"inputType": "certificate-file",
 				"isHiddenKey": true
 			},
 			{
 				"inputLabel": "Client Certificate",
 				"inputKeyword": "sslCert",
-				"inputType": "file",
-				"extensions": ["pem", "crt", "key"],
+				"inputType": "certificate-file",
 				"isHiddenKey": true
 			},
 			{
 				"inputLabel": "Client Private Key",
-				"inputKeyword": "sslKey",
+				"inputKeyword": "certificate-file",
 				"inputType": "file",
-				"extensions": ["pem", "crt", "key"],
 				"isHiddenKey": true
 			}
 		]
