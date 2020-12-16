@@ -14,7 +14,7 @@ let documentOrganizingType = null;
 
 const setDependencies = ({ lodash }) => _ = lodash;
 
-const getDBClient = (connectionInfo) => {
+const getDBClient = (connectionInfo = {}) => {
 	let sslOptions = {};
 	if (connectionInfo.is_ssl) {
 		sslOptions = {

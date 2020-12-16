@@ -99,8 +99,8 @@
 			},
 			{
 				"inputLabel": "Client Private Key",
-				"inputKeyword": "certificate-file",
-				"inputType": "file",
+				"inputKeyword": "sslKey",
+				"inputType": "certificate-file",
 				"isHiddenKey": true
 			}
 		]
