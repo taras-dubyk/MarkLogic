@@ -44,7 +44,7 @@ const releaseDBClient = () => {
 }
 
 const getDBCollections = async (dbClient) => {
-	const getAllCollectionsXQuery = 'fn:distinct-values(for $c in for $d in xdmp:directory("/", "infinity") return xdmp:document-get-collections(xdmp:node-uri($d)) return $c)';
+	const getAllCollectionsXQuery = 'cts:collections()';
 	const response = await dbClient.xqueryEval(getAllCollectionsXQuery).result();
 	return Array.isArray(response) ? response.map(({ value }) => value) : [];
 }
@@ -166,7 +166,7 @@ const setDocumentsOrganizationType = (type) => {
 	documentOrganizingType = type;
 }
 
-const getDBProperties = async (dbClient, dbName) => {
+const getDBProperties = async (dbClient, dbName, logger) => {
 	setDependencies(dependencies);
 
 	const propertiesConfig = getDBPropertiesConfig(dbName);
@@ -176,7 +176,13 @@ const getDBProperties = async (dbClient, dbName) => {
 	}
 
 	const dbPropsData = await Promise.all(propertiesConfig.map(async item => {
-		const response = await dbClient.xqueryEval(item.query).result();
+		let response;
+		try {
+			response = await dbClient.xqueryEval(item.query).result();
+		} catch(err) {
+			logger.log('error', err, 'Retrieving DB property ' + item.keyword);
+			return { keyword: item.keyword };
+		}
 
 		return {
 			keyword: item.keyword,

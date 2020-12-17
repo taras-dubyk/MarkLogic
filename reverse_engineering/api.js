@@ -90,7 +90,7 @@ module.exports = {
 			logger.progress({ message: 'Documents sampling started', containerName: dbName, entityName: '' });
 			const dbClient = getDBClient();
 			const documentOrganizationType = await getDocumentOrganizingType(dbClient);
-			const containerProperties = await getDBProperties(dbClient, dbName);
+			const containerProperties = await getDBProperties(dbClient, dbName, logger);
 			const maxFetchOperationsAtATime = 10;
 			
 			const entities = await dependencies.async.mapLimit(entityNames, maxFetchOperationsAtATime, async entityName => {
@@ -123,8 +123,8 @@ module.exports = {
 			
 			cb(null, entityDataPackage);
 		} catch (err) {
-			logger.log('error', err, 'Retrieving collections/directories information');
-				cb(prepareError(err));
+			logger.log('error', err, 'Retrieving collections/directories documents');
+			cb(prepareError(err));
 		}
 	}
 };
