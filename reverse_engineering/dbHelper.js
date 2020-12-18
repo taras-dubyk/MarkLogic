@@ -43,15 +43,32 @@ const releaseDBClient = () => {
 	documentOrganizingType = null;
 }
 
-const getDBCollections = async (dbClient) => {
-	const getAllCollectionsXQuery = 'cts:collections()';
-	const response = await dbClient.xqueryEval(getAllCollectionsXQuery).result();
+const getDBCollections = async (dbClient, logger) => {
+	const getAllCollectionsXQueryLexiconReady = 'cts:collections()';
+	const getAllCollectionsXQuery = 'fn:distinct-values(for $c in for $d in xdmp:directory("/", "infinity") return xdmp:document-get-collections(xdmp:node-uri($d)) return $c)';
+
+	let response;
+	try {
+		response = await dbClient.xqueryEval(getAllCollectionsXQueryLexiconReady).result();
+	} catch(err) {
+		logger.log('error', err, 'Getting collections list using collection lexicon');
+		response = await dbClient.xqueryEval(getAllCollectionsXQuery).result();
+	}
 	return Array.isArray(response) ? response.map(({ value }) => value) : [];
 }
 
-const getDBDirectories = async (dbClient) => {
+const getDBDirectories = async (dbClient, logger) => {
+	const getAllDirectoriesXQueryLexiconReady = 'fn:distinct-values(for $d in cts:uris() return fn:replace($d, "[^/]+$", ""))';
 	const getAllDirectoriesXQuery = 'fn:distinct-values(for $d in xdmp:directory("/", "infinity") return fn:replace(xdmp:node-uri($d), "[^/]+$", ""))';
-	const response = await dbClient.xqueryEval(getAllDirectoriesXQuery).result();
+	
+	let response;
+	try {
+		response = await dbClient.xqueryEval(getAllDirectoriesXQueryLexiconReady).result();
+	} catch(err) {
+		logger.log('error', err, 'Getting directories list using URI lexicon');
+		response = await dbClient.xqueryEval(getAllDirectoriesXQuery).result();
+	}
+
 	return Array.isArray(response) ? response.map(({ value }) => value) : [];
 }
 
@@ -116,7 +133,7 @@ const getDirectoryDocuments = async (directoryName, dbClient, recordSamplingSett
 	return documents.map(({ content }) => (content));
 }
 
-const getEntityDataPackage = (entities, documentOrganizationType, containerProperties) => {
+const getEntityDataPackage = (entities, documentOrganizationType, containerProperties, fieldInference) => {
 	setDependencies(dependencies);
 	return entities.map(entity => {
 		let parentDirectoryName = '';
@@ -133,7 +150,8 @@ const getEntityDataPackage = (entities, documentOrganizationType, containerPrope
 			},
 			validation: {
 				jsonSchema:	getEntityJSONSchema(documentTemplate, parentDirectoryName),
-			}
+			},
+			...(fieldInference.active === 'field' && { documentTemplate })
 		};
 	});
 }

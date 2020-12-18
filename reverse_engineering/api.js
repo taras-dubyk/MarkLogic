@@ -55,11 +55,11 @@ module.exports = {
 				let dbCollections = [];
 				switch (connectionInfo.documentsOrganizing) {
 					case 'directories':
-						dbCollections = await getDBDirectories(dbClient);
+						dbCollections = await getDBDirectories(dbClient, logger);
 						setDocumentsOrganizationType(DOCUMENTS_ORGANIZING_DIRECTORIES);
 						break;
 					default:
-						dbCollections = await getDBCollections(dbClient);
+						dbCollections = await getDBCollections(dbClient, logger);
 						dbCollections.push(UNDEFINED_COLLECTION_NAME)
 						setDocumentsOrganizationType(DOCUMENTS_ORGANIZING_COLLECTIONS);
 				}
@@ -97,7 +97,7 @@ module.exports = {
 				let documents;
 				if (documentOrganizationType === DOCUMENTS_ORGANIZING_COLLECTIONS) {
 					if (entityName === UNDEFINED_COLLECTION_NAME) {
-						const collectionNames = await getDBCollections(dbClient);
+						const collectionNames = await getDBCollections(dbClient, logger);
 						documents = await getUndefinedCollectionDocuments(collectionNames, dbClient, recordSamplingSettings);
 					} else {
 						documents = await getCollectionDocuments(entityName, dbClient, recordSamplingSettings);
@@ -117,7 +117,7 @@ module.exports = {
 				};
 			});
 
-			const entityDataPackage = getEntityDataPackage(entities, documentOrganizationType, containerProperties);
+			const entityDataPackage = getEntityDataPackage(entities, documentOrganizationType, containerProperties, data.fieldInference);
 
 			logger.progress({ message: 'Reverse-Engineering completed', containerName: '', entityName: '' });
 			
