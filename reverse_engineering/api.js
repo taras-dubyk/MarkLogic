@@ -23,7 +23,9 @@ const UNDEFINED_COLLECTION_NAME = 'Documents with undefined collection';
 
 module.exports = {
 	connect: function (connectionInfo, logger, cb) {
+		logger.log('info', 'Connect', 'Getting DB client');
 		const dbClient = getDBClient(connectionInfo);
+		logger.log('info', 'Connect', 'Got DB client');
 		cb(dbClient);
 	},
 
@@ -48,33 +50,45 @@ module.exports = {
 	},
 
 	getDbCollectionsNames: function(connectionInfo, logger, cb, app) {
+		logger.log('info', 'getDbCollectionsNames', 'Getting collections/directories');
 		logInfo('Retrieving collections/directories information', connectionInfo, logger);
 
-		this.connect(connectionInfo, logger, async (dbClient) => {
-			try {
-				let dbCollections = [];
-				switch (connectionInfo.documentsOrganizing) {
-					case 'directories':
-						dbCollections = await getDBDirectories(dbClient, logger);
-						setDocumentsOrganizationType(DOCUMENTS_ORGANIZING_DIRECTORIES);
-						break;
-					default:
-						dbCollections = await getDBCollections(dbClient, logger);
-						dbCollections.push(UNDEFINED_COLLECTION_NAME)
-						setDocumentsOrganizationType(DOCUMENTS_ORGANIZING_COLLECTIONS);
+		try {
+			const timeout = setTimeout(() => {
+				throw new Error('Getting collections/directories timeout');
+			}, 1000 * 60 * 2);
+
+			this.connect(connectionInfo, logger, async (dbClient) => {
+				try {
+					let dbCollections = [];
+					switch (connectionInfo.documentsOrganizing) {
+						case 'directories':
+							dbCollections = await getDBDirectories(dbClient, logger);
+							setDocumentsOrganizationType(DOCUMENTS_ORGANIZING_DIRECTORIES);
+							break;
+						default:
+							dbCollections = await getDBCollections(dbClient, logger);
+							dbCollections.push(UNDEFINED_COLLECTION_NAME)
+							setDocumentsOrganizationType(DOCUMENTS_ORGANIZING_COLLECTIONS);
+					}
+
+					const result = [{
+						dbCollections,
+						dbName: connectionInfo.database || 'Documents',
+					}];
+
+					cb(null, result);
+				} catch (err) {
+					logger.log('error', err, 'Retrieving collections/directories information');
+					cb(prepareError(err));
+				} finally {
+					clearTimeout(timeout);
 				}
-
-				const result = [{
-					dbCollections,
-					dbName: 'Documents',
-				}];
-
-				cb(null, result);
-			} catch (err) {
-				logger.log('error', err, 'Retrieving collections/directories information');
-				cb(prepareError(err));
-			}
-		});
+			});
+		} catch (err) {
+			logger.log('error', err, 'Connecting to a DB for a retrieving collections/directories information');
+			cb(prepareError(err));
+		}
 	},
 
 	getDbCollectionsData: async function(data, logger, cb, app) {
