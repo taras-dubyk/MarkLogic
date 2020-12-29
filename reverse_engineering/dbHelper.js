@@ -44,6 +44,7 @@ const releaseDBClient = () => {
 }
 
 const getDBCollections = async (dbClient, logger) => {
+	logger.log('info', '', 'Getting collections list started');
 	const getAllCollectionsXQueryLexiconReady = 'cts:collections()';
 	const getAllCollectionsXQuery = 'fn:distinct-values(for $c in for $d in xdmp:directory("/", "infinity") return xdmp:document-get-collections(xdmp:node-uri($d)) return $c)';
 
@@ -58,6 +59,7 @@ const getDBCollections = async (dbClient, logger) => {
 }
 
 const getDBDirectories = async (dbClient, logger) => {
+	logger.log('info', 'getDbDirectories', 'Getting directories list');
 	const getAllDirectoriesXQueryLexiconReady = 'fn:distinct-values(for $d in cts:uris() return fn:replace($d, "[^/]+$", ""))';
 	const getAllDirectoriesXQuery = 'fn:distinct-values(for $d in xdmp:directory("/", "infinity") return fn:replace(xdmp:node-uri($d), "[^/]+$", ""))';
 	
