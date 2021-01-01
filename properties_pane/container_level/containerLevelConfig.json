@@ -88,7 +88,6 @@ making sure that you maintain a proper JSON format.
 			{
 				"propertyName": "Description",
 				"propertyKeyword": "description",
-				"shouldValidate": false,
 				"propertyTooltip": "description",
 				"propertyType": "details",
 				"template": "textarea"
@@ -96,25 +95,21 @@ making sure that you maintain a proper JSON format.
 			{
 				"propertyName": "Security database",
 				"propertyKeyword": "securityDB",
-				"shouldValidate": false,
 				"propertyType": "text"
 			},
 			{
 				"propertyName": "Schema database",
 				"propertyKeyword": "schemaDB",
-				"shouldValidate": false,
 				"propertyType": "text"
 			},
 			{
 				"propertyName": "Triggers database",
 				"propertyKeyword": "triggersDB",
-				"shouldValidate": false,
 				"propertyType": "text"
 			},
 			{
 				"propertyName": "Comments",
 				"propertyKeyword": "comments",
-				"shouldValidate": false,
 				"propertyTooltip": "comments",
 				"propertyType": "details",
 				"template": "textarea"
@@ -127,7 +122,6 @@ making sure that you maintain a proper JSON format.
 			{
 				"propertyName": "Data encryption",
 				"propertyKeyword": "dataEncryption",
-				"shouldValidate": false,
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
 				"options": [
@@ -139,7 +133,6 @@ making sure that you maintain a proper JSON format.
 			{
 				"propertyName": "Language",
 				"propertyKeyword": "language",
-				"shouldValidate": false,
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
 				"options": [
@@ -165,7 +158,6 @@ making sure that you maintain a proper JSON format.
 			{
 				"propertyName": "Stemmed searches",
 				"propertyKeyword": "stemmedSearches",
-				"shouldValidate": false,
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
 				"options": [
@@ -178,151 +170,126 @@ making sure that you maintain a proper JSON format.
 			{
 				"propertyName": "Word searches",
 				"propertyKeyword": "wordSearches",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Word positions",
 				"propertyKeyword": "wordPositions",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Fast phrase searches",
 				"propertyKeyword": "fastPhraseSearches",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Fast reverse searches",
 				"propertyKeyword": "fastReverseSearches",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Triple index",
 				"propertyKeyword": "tripleIndex",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Triple positions",
 				"propertyKeyword": "triplePositions",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Fast case sensitive searches",
 				"propertyKeyword": "fastCaseSensitiveSearches",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Fast diacritic sensitive searches",
 				"propertyKeyword": "fastdiacriticSensitiveSearches",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Fast element word searches",
 				"propertyKeyword": "fastElementWordSearches",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Element word positions",
 				"propertyKeyword": "elementWordPositions",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Fast element phrase searches",
 				"propertyKeyword": "fastElementPhraseSearches",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Element value positions",
 				"propertyKeyword": "elementValuePositions",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Attribute value positions",
 				"propertyKeyword": "attributeValuePositions",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Three character searches",
 				"propertyKeyword": "threeCharacterSearches",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Three character word positions",
 				"propertyKeyword": "threeCharacterWordPositions",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Fast element character searches",
 				"propertyKeyword": "fastElementCharacterSearches",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Trailing wildcard searches",
 				"propertyKeyword": "trailingWildcardSearches",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Trailing wildcard word positions",
 				"propertyKeyword": "trailingWildcardWordPositions",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Fast element trailing wildcard searches",
 				"propertyKeyword": "fastElementTrailingWildcardSearches",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Two character searches",
 				"propertyKeyword": "twoCharacterSearches",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "One character searches",
 				"propertyKeyword": "oneCharacterSearches",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "URI lexicon",
 				"propertyKeyword": "uriLexicon",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Collection lexicon",
 				"propertyKeyword": "collectionLexicon",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Reindexer enable",
 				"propertyKeyword": "reindexerEnable",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Reindexer throttle",
 				"propertyKeyword": "reindexerThrottle",
-				"shouldValidate": false,
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
 				"options": [
@@ -344,7 +311,6 @@ making sure that you maintain a proper JSON format.
 			{
 				"propertyName": "Directory creation",
 				"propertyKeyword": "directoryCreation",
-				"shouldValidate": false,
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
 				"options": [
@@ -356,31 +322,26 @@ making sure that you maintain a proper JSON format.
 			{
 				"propertyName": "Maintain last modified",
 				"propertyKeyword": "maintainLastModified",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Maintain directory last modified",
 				"propertyKeyword": "maintainDirectoryLastModified",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Inherit permissions",
 				"propertyKeyword": "inheritPermissions",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Inherit collections",
 				"propertyKeyword": "inheritCollections",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Inherit quality",
 				"propertyKeyword": "inheritQuality",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
@@ -482,25 +443,21 @@ making sure that you maintain a proper JSON format.
 			{
 				"propertyName": "Preallocate journals",
 				"propertyKeyword": "preallocateJournals",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Preload mapped data",
 				"propertyKeyword": "preloadMappedData",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Preload replica mapped data",
 				"propertyKeyword": "preloadReplicaMappedData",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Range index optimize",
 				"propertyKeyword": "rangeIndexOptimize",
-				"shouldValidate": false,
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
 				"options": [
@@ -519,7 +476,6 @@ making sure that you maintain a proper JSON format.
 			{
 				"propertyName": "Format compatibility",
 				"propertyKeyword": "formatCompatibility",
-				"shouldValidate": false,
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
 				"options": [
@@ -531,7 +487,6 @@ making sure that you maintain a proper JSON format.
 			{
 				"propertyName": "Index detection",
 				"propertyKeyword": "indexDetection",
-				"shouldValidate": false,
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
 				"options": [
@@ -542,7 +497,6 @@ making sure that you maintain a proper JSON format.
 			{
 				"propertyName": "Expunge locks",
 				"propertyKeyword": "expungeLocks",
-				"shouldValidate": false,
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
 				"options": [
@@ -553,7 +507,6 @@ making sure that you maintain a proper JSON format.
 			{
 				"propertyName": "TF normalization",
 				"propertyKeyword": "tfNormalization",
-				"shouldValidate": false,
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
 				"options": [
@@ -568,13 +521,11 @@ making sure that you maintain a proper JSON format.
 			{
 				"propertyName": "Rebalancer enable",
 				"propertyKeyword": "rebalancerEnable",
-				"shouldValidate": false,
 				"propertyType": "checkbox"
 			},
 			{
 				"propertyName": "Rebalancer throttle",
 				"propertyKeyword": "rebalancerThrottle",
-				"shouldValidate": false,
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
 				"options": [
@@ -588,7 +539,6 @@ making sure that you maintain a proper JSON format.
 			{
 				"propertyName": "Assignment policy",
 				"propertyKeyword": "assignmentPolicy",
-				"shouldValidate": false,
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
 				"options": [
@@ -597,6 +547,443 @@ making sure that you maintain a proper JSON format.
 					"range",
 					"legacy",
 					"query"
+				]
+			}
+		]
+	},
+
+	{
+		"lowerTab": "Indexes",
+		"structure": [
+			{
+				"propertyName": "Range indexes",
+				"propertyKeyword": "rangeIndexes",
+				"propertyType": "group",
+				"propertyTooltip": "",
+				"structure": [
+					{
+						"propertyName": "Index name",
+						"propertyKeyword": "idxName",
+						"propertyTooltip": "Friendly name for index",
+						"propertyType": "text"
+					},
+					{
+						"propertyName": "Index type",
+						"propertyKeyword": "idxType",
+						"propertyTooltip": "Select from list of options",
+						"propertyType": "select",
+						"defaultValue": "Element",
+						"options": [
+							"Element",
+							"Attribute",
+							"Path",
+							"Field"
+						]
+					},
+					{
+						"propertyName": "Scalar type",
+						"propertyKeyword": "scalarType",
+						"propertyTooltip": "Select an atomic type specification",
+						"propertyType": "select",
+						"options": [
+							"int",
+							"unsignedInt",
+							"long",
+							"unsignedLong",
+							"float",
+							"double",
+							"decimal",
+							"dateTime",
+							"time",
+							"date",
+							"gYearMonth",
+							"gYear",
+							"gMonth",
+							"gDay",
+							"yearMonthDuration",
+							"dayTimeDuration",
+							"string",
+							"anyURI"
+						]
+					},
+					{
+						"propertyName": "Parent namespace URI",
+						"propertyKeyword": "parentNamespaceURI",
+						"propertyTooltip": "Specify a parent element namespace URI.",
+						"propertyType": "text",
+						"dependency": {
+							"key": "idxType",
+							"value": "Attribute"
+						}
+					},
+					{
+						"propertyName": "Parent localname",
+						"propertyKeyword": "parentLocalname",
+						"propertyTooltip": "Specify one or more parent element localnames",
+						"propertyType": "text",
+						"dependency": {
+							"key": "idxType",
+							"value": "Attribute"
+						}
+					},
+					{
+						"propertyName": "Namespace URI",
+						"propertyKeyword": "namespaceURI",
+						"propertyTooltip": "Specify namespace URI",
+						"propertyType": "text",
+						"dependency": {
+							"type": "or",
+							"values": [{
+								"key": "idxType",
+								"value": "Element"
+							},{
+								"key": "idxType",
+								"value": "Attribute"
+							}]
+						}
+					},
+					{
+						"propertyName": "Localname",
+						"propertyKeyword": "localname",
+						"propertyTooltip": "Specify one or more localnames",
+						"propertyType": "text",
+						"dependency": {
+							"type": "or",
+							"values": [{
+								"key": "idxType",
+								"value": "Element"
+							},{
+								"key": "idxType",
+								"value": "Attribute"
+							}]
+						}
+					},
+					{
+						"propertyName": "Path expression",
+						"propertyKeyword": "pathExpression",
+						"propertyTooltip": "Specify the path expression. For example:/prefix1:locname1/prefix2:locname2.",
+						"propertyType": "text",
+						"dependency": {
+							"key": "idxType",
+							"value": "Path"
+						}
+					},
+					{
+						"propertyName": "Range value positions",
+						"propertyKeyword": "rangeValuePositions",
+						"propertyTooltip": "Index range value positions for faster near searches involving range queries (slower document loads and larger database files).",
+						"defaultValue": false,
+						"propertyType": "checkbox"
+					},
+					{
+						"propertyName": "invalid values",
+						"propertyKeyword": "invalidValues",
+						"propertyTooltip": "Allow ingestion of documents that do not have matching type of data.",
+						"propertyType": "select",
+						"defaultValue": "reject",
+						"options": [
+							"ignore",
+							"reject"
+						]
+					}
+				]
+			},
+			{
+				"propertyName": "Geospatial point",
+				"propertyKeyword": "geoPointIndexes",
+				"propertyType": "group",
+				"propertyTooltip": "",
+				"structure": [
+					{
+						"propertyName": "Index name",
+						"propertyKeyword": "idxName",
+						"propertyTooltip": "Friendly name for index",
+						"propertyType": "text"
+					},
+					{
+						"propertyName": "Index type",
+						"propertyKeyword": "idxType",
+						"propertyTooltip": "Select from list of options",
+						"propertyType": "select",
+						"defaultValue": "Element",
+						"options": [
+							"Element",
+							"Element child",
+							"Element pair",
+							"Attribute pair",
+							"Path"
+						]
+					},
+					{
+						"propertyName": "Parent namespace URI",
+						"propertyKeyword": "parentNamespaceURI",
+						"propertyTooltip": "Specify a parent element namespace URI.",
+						"propertyType": "text",
+						"dependency": {
+							"type": "or",
+							"values": [{
+								"key": "idxType",
+								"value": "Element child"
+							},{
+								"key": "idxType",
+								"value": "Element pair"
+							},{
+								"key": "idxType",
+								"value": "Attribute pair"
+							}]
+						}
+					},
+					{
+						"propertyName": "Parent localname",
+						"propertyKeyword": "parentLocalname",
+						"propertyTooltip": "Specify one or more parent element localnames",
+						"propertyType": "text",
+						"dependency": {
+							"type": "or",
+							"values": [{
+								"key": "idxType",
+								"value": "Element child"
+							},{
+								"key": "idxType",
+								"value": "Element pair"
+							},{
+								"key": "idxType",
+								"value": "Attribute pair"
+							}]
+						}
+					},
+					{
+						"propertyName": "Namespace URI",
+						"propertyKeyword": "namespaceURI",
+						"propertyTooltip": "Specify namespace URI",
+						"propertyType": "text",
+						"dependency": {
+							"type": "or",
+							"values": [{
+								"key": "idxType",
+								"value": "Element"
+							},{
+								"key": "idxType",
+								"value": "Element child"
+							}]
+						}
+					},
+					{
+						"propertyName": "Localname",
+						"propertyKeyword": "localname",
+						"propertyTooltip": "Specify one or more localnames",
+						"propertyType": "text",
+						"dependency": {
+							"type": "or",
+							"values": [{
+								"key": "idxType",
+								"value": "Element"
+							},{
+								"key": "idxType",
+								"value": "Element child"
+							}]
+						}
+					},
+					{
+						"propertyName": "Lat namespace URI",
+						"propertyKeyword": "latitudeNamespaceURI",
+						"propertyTooltip": "Specify a latitude child namespace URI.",
+						"propertyType": "text",
+						"dependency": {
+							"type": "or",
+							"values": [{
+								"key": "idxType",
+								"value": "Element pair"
+							},{
+								"key": "idxType",
+								"value": "Attribute pair"
+							}]
+						}
+					},
+					{
+						"propertyName": "Lat localname",
+						"propertyKeyword": "latitudeLocalname",
+						"propertyTooltip": "Specify one or more latitude child localnames",
+						"propertyType": "text",
+						"dependency": {
+							"type": "or",
+							"values": [{
+								"key": "idxType",
+								"value": "Element pair"
+							},{
+								"key": "idxType",
+								"value": "Attribute pair"
+							}]
+						}
+					},
+					{
+						"propertyName": "Long namespace URI",
+						"propertyKeyword": "longitudeNamespaceURI",
+						"propertyTooltip": "Specify a longitude child namespace URI",
+						"propertyType": "text",
+						"dependency": {
+							"type": "or",
+							"values": [{
+								"key": "idxType",
+								"value": "Element pair"
+							},{
+								"key": "idxType",
+								"value": "Attribute pair"
+							}]
+						}
+					},
+					{
+						"propertyName": "Long localname",
+						"propertyKeyword": "longitudeLocalname",
+						"propertyTooltip": "Specify one or more longitude child localnames",
+						"propertyType": "text",
+						"dependency": {
+							"type": "or",
+							"values": [{
+								"key": "idxType",
+								"value": "Element pair"
+							},{
+								"key": "idxType",
+								"value": "Attribute pair"
+							}]
+						}
+					},
+					{
+						"propertyName": "Path expression",
+						"propertyKeyword": "pathExpression",
+						"propertyTooltip": "Specify the path expression. For example:/prefix1:locname1/prefix2:locname2.",
+						"propertyType": "text",
+						"dependency": {
+							"key": "idxType",
+							"value": "Path"
+						}
+					},
+					{
+						"propertyName": "Coord system name",
+						"propertyKeyword": "coordinateSystemName",
+						"propertyTooltip": "",
+						"propertyType": "text"
+					},
+					{
+						"propertyName": "Coord system",
+						"propertyKeyword": "coordinateSystem",
+						"propertyTooltip": "Select from list of options",
+						"propertyType": "select",
+						"defaultValue": "WGS84",
+						"options": [
+							"WGS84",
+							"ETRS89",
+							"Raw",
+							"WGS84 (double precision)",
+							"ETRS89 (double precision)",
+							"Raw (double precision)"
+						]
+					},
+					{
+						"propertyName": "Point format",
+						"propertyKeyword": "pointFormat",
+						"propertyTooltip": "Select the general format of the point.",
+						"propertyType": "select",
+						"defaultValue": "point",
+						"options": [
+							"point",
+							"long-lat-point"
+						],
+						"dependency": {
+							"key": "idxType",
+							"value": "Path"
+						}
+					},
+					{
+						"propertyName": "Range value positions",
+						"propertyKeyword": "rangeValuePositions",
+						"propertyTooltip": "Index range value positions for faster near searches involving range queries (slower document loads and larger database files).",
+						"defaultValue": false,
+						"propertyType": "checkbox"
+					},
+					{
+						"propertyName": "invalid values",
+						"propertyKeyword": "invalidValues",
+						"propertyTooltip": "Allow ingestion of documents that do not have matching type of data.",
+						"propertyType": "select",
+						"defaultValue": "reject",
+						"options": [
+							"ignore",
+							"reject"
+						]
+					}				]
+			},
+			{
+				"propertyName": "Geospatial region",
+				"propertyKeyword": "geoRegionIndexes",
+				"propertyType": "group",
+				"propertyTooltip": "",
+				"structure": [
+					{
+						"propertyName": "Index name",
+						"propertyKeyword": "idxName",
+						"propertyTooltip": "Friendly name for index",
+						"propertyType": "text"
+					},
+					{
+						"propertyName": "Path expression",
+						"propertyKeyword": "pathExpression",
+						"propertyTooltip": "Specify the path expression. For example:/prefix1:locname1/prefix2:locname2.",
+						"propertyType": "text"
+					},
+					{
+						"propertyName": "Coord system name",
+						"propertyKeyword": "coordinateSystemName",
+						"propertyTooltip": "",
+						"propertyType": "text"
+					},
+					{
+						"propertyName": "Coord system",
+						"propertyKeyword": "coordinateSystem",
+						"propertyTooltip": "Select from list of options",
+						"propertyType": "select",
+						"defaultValue": "WGS84",
+						"options": [
+							"WGS84",
+							"ETRS89",
+							"Raw",
+							"WGS84 (double precision)",
+							"ETRS89 (double precision)",
+							"Raw (double precision)"
+						]
+					},
+					{
+						"propertyName": "Units",
+						"propertyKeyword": "units",
+						"propertyTooltip": "Indicates which unit of measure to use for distance",
+						"propertyType": "select",
+						"options": [
+							"km",
+							"miles",
+							"feet",
+							"meters"
+						]
+					},
+					{
+						"propertyName": "Geohash precision",
+						"propertyKeyword": "geohashPrecision",
+						"propertyType": "numeric",
+						"valueType": "number",
+						"allowNegative": false,
+						"minValue": 0,
+						"maxValue": 9,
+						"step": 1
+					},					{
+						"propertyName": "invalid values",
+						"propertyKeyword": "invalidValues",
+						"propertyTooltip": "Allow ingestion of documents that do not have matching type of data.",
+						"propertyType": "select",
+						"defaultValue": "reject",
+						"options": [
+							"ignore",
+							"reject"
+						]
+					}
 				]
 			}
 		]
