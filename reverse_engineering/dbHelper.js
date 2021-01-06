@@ -11,36 +11,49 @@ const DOCUMENTS_ORGANIZING_DIRECTORIES = 'directories';
 
 let dbClient = null;
 let documentOrganizingType = null;
+let connectionConfig = {};
 
 const setDependencies = ({ lodash }) => _ = lodash;
 
-const getDBClient = (connectionInfo = {}) => {
-	let sslOptions = {};
-	if (connectionInfo.is_ssl) {
-		sslOptions = {
-			ssl: true,
-			...readCertificateFiles(connectionInfo),
-		};
-	}
-	if (!dbClient) {
-		dbClient = marklogic.createDatabaseClient({
+const getDBClient = ({ connectionInfo = null, database = null }) => {
+	if (connectionInfo) {
+		let sslOptions = {};
+		if (connectionInfo.is_ssl) {
+			sslOptions = {
+				ssl: true,
+				...readCertificateFiles(connectionInfo),
+			};
+		}
+		connectionConfig = {
 			host: connectionInfo.host,
 			port: connectionInfo.port,
 			user: connectionInfo.username,
 			password: connectionInfo.password,
-			...(connectionInfo.database && { database: connectionInfo.database }),
-			...sslOptions
-		});
+			...sslOptions,
+		};
+
 	}
-	return dbClient;
+	return marklogic.createDatabaseClient({
+		...connectionConfig,
+		...(database && { database })
+	});
 }
 
-const releaseDBClient = () => {
+const releaseDBClient = (dbClient) => {
 	if (dbClient) {
 		dbClient.release();
-		dbClient = null;
 	}
-	documentOrganizingType = null;
+}
+
+const getDbList = async (dbClient, logger) => {
+	const systemDbs = ["Security", "App-Services", "Schemas", "Last-Login", "Fab", "Triggers", "Meters", "Modules", "Extensions"];
+	logger.log('info', '', 'Getting db list started');
+	const getDBListXQuery = 'xdmp:database-name(xdmp:databases())';
+
+	const response = await dbClient.xqueryEval(getDBListXQuery).result();
+	logger.log('info', '', 'Getting db list successfully finished');
+	const dbList = Array.isArray(response) ? response.map(({ value }) => value) : [];
+	return dbList.filter(dbName => !systemDbs.includes(dbName));
 }
 
 const getDBCollections = async (dbClient, logger) => {
@@ -74,18 +87,7 @@ const getDBDirectories = async (dbClient, logger) => {
 	return Array.isArray(response) ? response.map(({ value }) => value) : [];
 }
 
-const getDocumentOrganizingType = async (dbClient = null) => {
-	if (documentOrganizingType) {
-		return documentOrganizingType;
-	}
-	if (dbClient) {
-		const dbCollections = await getDBCollections(dbClient);
-		if (dbCollections.length > 0) {
-			documentOrganizingType = DOCUMENTS_ORGANIZING_COLLECTIONS; 
-		} else {
-			documentOrganizingType = DOCUMENTS_ORGANIZING_DIRECTORIES; 
-		}
-	}
+const getDocumentOrganizingType = () => {
 	return documentOrganizingType;
 }
 
@@ -276,4 +278,5 @@ module.exports = {
 	setDocumentsOrganizationType,
 	getDBProperties,
 	getUndefinedCollectionDocuments,
+	getDbList,
 };
