@@ -41,7 +41,8 @@
 			{
 				"inputLabel": "Database",
 				"inputKeyword": "database",
-				"inputType": "text"
+				"inputType": "text",
+				"description": "Optionally specify database name to limit scope of discovery"
 			}
 		]
 	},
