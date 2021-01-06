@@ -102,9 +102,6 @@ module.exports = {
 		logger.log('info', data, 'Retrieving documents', data.hiddenKeys);
 		setDependencies(app);
 		
-		// const dbName = data.collectionData.dataBaseNames[0];
-		// const entityNames = data.collectionData.collections[dbName] || [];
-		// const includeEmptyCollection = data.includeEmptyCollection;
 		const recordSamplingSettings = data.recordSamplingSettings;
 		const maxFetchOperationsAtATime = 10;
 
@@ -132,6 +129,9 @@ module.exports = {
 					}
 					logger.progress({ message: 'Sample documents loaded', containerName: dbName, entityName });
 					
+					if (!data.includeEmptyCollection && documents.length === 0) {
+						return null;
+					}
 					return {
 						dbName,
 						collectionName: entityName  === UNDEFINED_COLLECTION_NAME ? 'Undefined collection' : entityName,
@@ -143,7 +143,7 @@ module.exports = {
 				});
 				
 				releaseDBClient(dbClient);
-				return getEntityDataPackage(entities, documentOrganizationType, containerProperties, data.fieldInference);
+				return getEntityDataPackage(entities.filter(Boolean), documentOrganizationType, containerProperties, data.fieldInference);
 			});
 
 			logger.progress({ message: 'Reverse-Engineering completed', containerName: '', entityName: '' });
