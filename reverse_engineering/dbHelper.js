@@ -51,13 +51,14 @@ const getDbList = async (dbClient, logger) => {
 	const getDBListXQuery = 'xdmp:database-name(xdmp:databases())';
 
 	const response = await dbClient.xqueryEval(getDBListXQuery).result();
-	logger.log('info', '', 'Getting db list successfully finished');
 	const dbList = Array.isArray(response) ? response.map(({ value }) => value) : [];
-	return dbList.filter(dbName => !systemDbs.includes(dbName));
+	const filteredDBList = dbList.filter(dbName => !systemDbs.includes(dbName));
+	logger.log('info', JSON.stringify(filteredDBList), 'Getting db list finished');
+	return filteredDBList;
 }
 
 const getDBCollections = async (dbClient, logger) => {
-	logger.log('info', '', 'Getting collections list started');
+	logger.log('info', '', `Getting "${dbClient.connectionParams.database}" collections list started`);
 	const getAllCollectionsXQueryLexiconReady = 'cts:collections()';
 	const getAllCollectionsXQuery = 'fn:distinct-values(for $c in for $d in xdmp:directory("/", "infinity") return xdmp:document-get-collections(xdmp:node-uri($d)) return $c)';
 
@@ -68,7 +69,14 @@ const getDBCollections = async (dbClient, logger) => {
 		logger.log('error', err, 'Getting collections list using collection lexicon');
 		response = await dbClient.xqueryEval(getAllCollectionsXQuery).result();
 	}
-	return Array.isArray(response) ? response.map(({ value }) => value) : [];
+	const collectionsList = Array.isArray(response) ? response.map(({ value }) => value) : [];
+	logger.log(
+		'info',
+		JSON.stringify(collectionsList),
+		`Getting "${dbClient.connectionParams.database}" collections list finished`
+	);
+
+	return collectionsList;
 }
 
 const getDBDirectories = async (dbClient, logger) => {

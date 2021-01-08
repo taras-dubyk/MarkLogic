@@ -4,7 +4,7 @@
   "description": "",
   "author": "Hackolade",
   "dependencies": {
-    "marklogic": "^2.4.2"
+    "marklogic": "^2.5.0"
   },
   "installed": true
 }

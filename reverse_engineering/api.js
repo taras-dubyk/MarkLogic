@@ -49,8 +49,8 @@ module.exports = {
 	},
 
 	getDbCollectionsNames: async function(connectionInfo, logger, cb, app) {
-		logger.log('info', 'getDbCollectionsNames', 'Getting collections/directories');
-		logInfo('Retrieving collections/directories information', connectionInfo, logger);
+		logInfo('Retrieving databases, collections/directories lists', connectionInfo, logger);
+		logger.log('info', '', 'Getting databases, collections/directories lists');
 		setDependencies(app);
 		let timeout;
 
@@ -82,7 +82,7 @@ module.exports = {
 				}
 
 				clearTimeout(timeout);
-
+				
 				return {
 					dbCollections,
 					dbName,
@@ -116,6 +116,7 @@ module.exports = {
 				const containerProperties = await getDBProperties(dbClient, dbName, logger);
 			
 				const entities = await dependencies.async.mapLimit(entityNames, maxFetchOperationsAtATime, async entityName => {
+					logger.log('info', '', `Retrieving "${dbName}:${entityName}" documents started`);
 					let documents;
 					if (documentOrganizationType === DOCUMENTS_ORGANIZING_COLLECTIONS) {
 						if (entityName === UNDEFINED_COLLECTION_NAME) {
@@ -127,8 +128,9 @@ module.exports = {
 					} else {
 						documents = await getDirectoryDocuments(entityName, dbClient, recordSamplingSettings);
 					}
-					logger.progress({ message: 'Sample documents loaded', containerName: dbName, entityName });
-					
+					logger.progress({ message: 'Sample documents loaded', containerName: dbName, entityName });					
+					logger.log('info', '', `Retrieving "${dbName}:${entityName}" documents finished`);
+
 					if (!data.includeEmptyCollection && documents.length === 0) {
 						return null;
 					}
