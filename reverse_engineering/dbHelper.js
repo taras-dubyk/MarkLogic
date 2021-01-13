@@ -59,7 +59,8 @@ const getDbList = async (dbClient, logger) => {
 
 const getDBCollections = async (dbClient, logger) => {
 	logger.log('info', '', `Getting "${dbClient.connectionParams.database}" collections list started`);
-	const getAllCollectionsXQueryLexiconReady = 'cts:collections()';
+	const maxCollections = 1000;
+	const getAllCollectionsXQueryLexiconReady = `cts:collections("", "limit=${maxCollections}")`;
 	const getAllCollectionsXQuery = 'fn:distinct-values(for $c in for $d in xdmp:directory("/", "infinity") return xdmp:document-get-collections(xdmp:node-uri($d)) return $c)';
 
 	let response;
