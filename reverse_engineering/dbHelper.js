@@ -53,7 +53,7 @@ const getDbList = async (dbClient, logger) => {
 	const response = await dbClient.xqueryEval(getDBListXQuery).result();
 	const dbList = Array.isArray(response) ? response.map(({ value }) => value) : [];
 	const filteredDBList = dbList.filter(dbName => !systemDbs.includes(dbName));
-	logger.log('info', JSON.stringify(filteredDBList), 'Getting db list finished');
+	logger.log('info', { dbList: filteredDBList }, 'Getting db list finished');
 	return filteredDBList;
 }
 
@@ -73,7 +73,7 @@ const getDBCollections = async (dbClient, logger) => {
 	const collectionsList = Array.isArray(response) ? response.map(({ value }) => value) : [];
 	logger.log(
 		'info',
-		JSON.stringify(collectionsList),
+		{ collectionsNumber: collectionsList.length, collectionsList },
 		`Getting "${dbClient.connectionParams.database}" collections list finished`
 	);
 
@@ -81,7 +81,7 @@ const getDBCollections = async (dbClient, logger) => {
 }
 
 const getDBDirectories = async (dbClient, logger) => {
-	logger.log('info', 'getDbDirectories', 'Getting directories list');
+	logger.log('info', '', 'Getting directories list');
 	const getAllDirectoriesXQueryLexiconReady = 'fn:distinct-values(for $d in cts:uris() return fn:replace($d, "[^/]+$", ""))';
 	const getAllDirectoriesXQuery = 'fn:distinct-values(for $d in xdmp:directory("/", "infinity") return fn:replace(xdmp:node-uri($d), "[^/]+$", ""))';
 	
@@ -92,8 +92,14 @@ const getDBDirectories = async (dbClient, logger) => {
 		logger.log('error', err, 'Getting directories list using URI lexicon');
 		response = await dbClient.xqueryEval(getAllDirectoriesXQuery).result();
 	}
+	const directoriesList = Array.isArray(response) ? response.map(({ value }) => value) : [];
+	logger.log(
+		'info',
+		{ directoriesNumber: directoriesList.length, directoriesList },
+		`Getting "${dbClient.connectionParams.database}" directories list finished`
+	);
 
-	return Array.isArray(response) ? response.map(({ value }) => value) : [];
+	return directoriesList;
 }
 
 const getDocumentOrganizingType = () => {

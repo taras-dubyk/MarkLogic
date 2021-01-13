@@ -25,7 +25,7 @@ const UNDEFINED_COLLECTION_NAME = 'Documents with undefined collection';
 module.exports = {
 	connect: function (connectionInfo, logger, cb) {
 		const dbClient = getDBClient({ connectionInfo });
-		logger.log('info', 'Connect', 'Got DB client');
+		logger.log('info', '', 'Got DB client');
 		cb(dbClient);
 	},
 
@@ -38,10 +38,10 @@ module.exports = {
 		this.connect(connectionInfo, logger, async (dbClient) => {
 			try {
 				await dbClient.checkConnection().result();
-				logger.log('info', 'Connection successful', 'Test connection');
+				logger.log('info', '', 'Test connection: Connection successful');
 				cb();
 			} catch (err) {
-				logger.log('info', 'Connection failed', 'Test connection');
+				logger.log('info', '', 'Test connection: Connection failed');
 				cb(prepareError(err));
 			}
 			this.disconnect(connectionInfo, () => {});
