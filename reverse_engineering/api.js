@@ -49,6 +49,7 @@ module.exports = {
 	},
 
 	getDbCollectionsNames: async function(connectionInfo, logger, cb, app) {
+		const timeoutMessage = 'Getting collections/directories timeout';
 		logInfo('Retrieving databases, collections/directories lists', connectionInfo, logger);
 		logger.log('info', '', 'Getting databases, collections/directories lists');
 		setDependencies(app);
@@ -70,7 +71,7 @@ module.exports = {
 					const getTimeoutHandler = () => {
 						return new Promise((resolve, reject) => {
 							timeout = setTimeout(() => {
-								reject('Getting collections/directories timeout');
+								reject(new Error(timeoutMessage));
 							}, 1000 * 60 * 2);
 						});
 					}
@@ -86,12 +87,14 @@ module.exports = {
 							setDocumentsOrganizationType(DOCUMENTS_ORGANIZING_COLLECTIONS);
 					}
 				} catch (err) {
+					if (err.message !== timeoutMessage) {
+						throw err;
+					}
 					logger.progress({ message: 'Error getting collections list', containerName: dbName, entityName: '' });
 					logger.log('error', err, `Retrieving collections/directories list for "${dbName}" DB`);
 					return null;
 				} finally {
 					clearTimeout(timeout);
-					releaseDBClient(dbClient);
 				}
 				
 				return {
