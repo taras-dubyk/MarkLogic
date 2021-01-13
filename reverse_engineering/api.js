@@ -64,24 +64,35 @@ module.exports = {
 
 			const result = await dependencies.async.mapSeries(dbNames, async dbName => {
 				const dbClient = getDBClient({ database: dbName });
-
-				timeout = setTimeout(() => {
-					throw new Error('Getting collections/directories timeout');
-				}, 1000 * 60 * 2);
-
 				let dbCollections = [];
-				switch (connectionInfo.documentsOrganizing) {
-					case 'directories':
-						dbCollections = await getDBDirectories(dbClient, logger);
-						setDocumentsOrganizationType(DOCUMENTS_ORGANIZING_DIRECTORIES);
-						break;
-					default:
-						dbCollections = await getDBCollections(dbClient, logger);
-						dbCollections.push(UNDEFINED_COLLECTION_NAME)
-						setDocumentsOrganizationType(DOCUMENTS_ORGANIZING_COLLECTIONS);
-				}
 
-				clearTimeout(timeout);
+				try {
+					const getTimeoutHandler = () => {
+						return new Promise((resolve, reject) => {
+							timeout = setTimeout(() => {
+								reject('Getting collections/directories timeout');
+							}, 1000 * 60 * 2);
+						});
+					}
+
+					switch (connectionInfo.documentsOrganizing) {
+						case 'directories':
+							dbCollections = await getDBDirectories(dbClient, logger);
+							setDocumentsOrganizationType(DOCUMENTS_ORGANIZING_DIRECTORIES);
+							break;
+						default:
+							dbCollections = await Promise.race([getDBCollections(dbClient, logger), getTimeoutHandler()]);
+							dbCollections.push(UNDEFINED_COLLECTION_NAME);
+							setDocumentsOrganizationType(DOCUMENTS_ORGANIZING_COLLECTIONS);
+					}
+				} catch (err) {
+					logger.progress({ message: 'Error getting collections list', containerName: dbName, entityName: '' });
+					logger.log('error', err, `Retrieving collections/directories list for "${dbName}" DB`);
+					return null;
+				} finally {
+					clearTimeout(timeout);
+					releaseDBClient(dbClient);
+				}
 				
 				return {
 					dbCollections,
@@ -89,7 +100,7 @@ module.exports = {
 				}
 			});
 
-			cb(null, result);
+			cb(null, result.filter(Boolean));
 		} catch (err) {
 			logger.log('error', err, 'Connecting to a DB for a retrieving collections/directories information');
 			cb(prepareError(err));
