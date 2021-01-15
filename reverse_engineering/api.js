@@ -19,6 +19,7 @@ const {
 const { prepareError } = require('./generalHelper');
 const logHelper = require('./logHelper');
 const { setDependencies } = require('./appDependencies');
+const { getIndexes } = require('./indexesHelper');
 const { dependencies } = require('./appDependencies');
 const UNDEFINED_COLLECTION_NAME = 'Documents with undefined collection';
 
@@ -128,6 +129,7 @@ module.exports = {
 				const dbClient = getDBClient({ database: dbName });
 
 				const containerProperties = await getDBProperties(dbClient, dbName, logger);
+				const indexes = await getIndexes(dbClient, dbName, logger);
 			
 				const entities = await dependencies.async.mapLimit(entityNames, maxFetchOperationsAtATime, async entityName => {
 					logger.log('info', '', `Retrieving "${dbName}:${entityName}" documents started`);
@@ -159,7 +161,7 @@ module.exports = {
 				});
 				
 				releaseDBClient(dbClient);
-				return getEntityDataPackage(entities.filter(Boolean), documentOrganizationType, containerProperties, data.fieldInference);
+				return getEntityDataPackage(entities.filter(Boolean), documentOrganizationType, containerProperties, indexes, data.fieldInference);
 			});
 
 			logger.progress({ message: 'Reverse-Engineering completed', containerName: '', entityName: '' });

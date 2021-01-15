@@ -152,7 +152,7 @@ const getDirectoryDocuments = async (directoryName, dbClient, recordSamplingSett
 	return documents.map(({ content }) => (content));
 }
 
-const getEntityDataPackage = (entities, documentOrganizationType, containerProperties, fieldInference) => {
+const getEntityDataPackage = (entities, documentOrganizationType, containerProperties, indexes, fieldInference) => {
 	setDependencies(dependencies);
 	return entities.map(entity => {
 		let parentDirectoryName = '';
@@ -165,7 +165,8 @@ const getEntityDataPackage = (entities, documentOrganizationType, containerPrope
 		return {
 			...entity,
 			bucketInfo: {
-				...containerProperties
+				...containerProperties,
+				...indexes,
 			},
 			validation: {
 				jsonSchema:	getEntityJSONSchema(documentTemplate, parentDirectoryName),
