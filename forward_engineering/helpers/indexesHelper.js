@@ -44,19 +44,20 @@ const getGeoRegionIndexes = (geoRegionIndexesData, alreadyUsedVariableNames) => 
 const getIndexesStatementsByType = (indexesData = [], handlersConfig, alreadyUsedVariableNames) => {
 	let indexesVarNames = [];
 	const statements = handlersConfig.reduce((acc, indexHandler) => {
+		const indexTypeVarNames = [];
 		const indexesForType = indexesData.filter(({ idxType }) => idxType === indexHandler.type);
 
 		const indexStatements = indexesForType.map(indexData => {
-			const variableName = getCheckedVariableName(indexData.idxName, [...alreadyUsedVariableNames, ...indexesVarNames]);
-			indexesVarNames.push(variableName);
+			const variableName = getCheckedVariableName(indexData.idxName, [...alreadyUsedVariableNames, ...indexesVarNames, ...indexTypeVarNames]);
+			indexTypeVarNames.push(variableName);
 			return indexHandler.mapper(indexData, variableName);
 		});
 		
 		if (indexStatements.length === 0) {
 			return acc;
 		}
-
-		const indexesAddStatement = getIndexesAddStatement(indexHandler.addIndexesFuncName, indexesVarNames) + '\n';
+		indexesVarNames = indexesVarNames.concat(indexTypeVarNames);
+		const indexesAddStatement = getIndexesAddStatement(indexHandler.addIndexesFuncName, indexTypeVarNames) + '\n';
 		indexStatements.push(indexesAddStatement);
 
 		return [...acc, ...indexStatements]
@@ -99,6 +100,7 @@ const rangePathIndexesMapper = (data, varName) => {
 	const funcName = 'databaseRangePathIndex';
 	const funcArguments = [
 		'dbId',
+		mapString(data.scalarType),
 		mapString(data.pathExpression),
 		mapString(data.scalarType === 'string' ? data.collation : ''),
 		mapBoolean(data.rangeValuePositions),
