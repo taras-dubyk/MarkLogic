@@ -70,6 +70,7 @@ const getElementRangeIndexConfig = (dbName) => {
 			idxType: 'Element',
 			scalarType: getXmlAttributeValue(data, 'scalar-type'),
 			namespaceURI: getXmlAttributeValue(data, 'namespace-uri'),
+			collation: getXmlAttributeValue(data, 'collation'),
 			localname: getXmlAttributeValue(data, 'localname'),
 			rangeValuePositions: getXmlAttributeValue(data, 'range-value-positions') === 'true',
 			invalidValues: getXmlAttributeValue(data, 'invalid-values'),
@@ -92,6 +93,7 @@ const getAttributeRangeIndexConfig = (dbName) => {
 			parentNamespaceURI: getXmlAttributeValue(data, 'parent-namespace-uri'),
 			parentLocalname: getXmlAttributeValue(data, 'parent-localname'),
 			namespaceURI: getXmlAttributeValue(data, 'namespace-uri'),
+			collation: getXmlAttributeValue(data, 'collation'),
 			localname: getXmlAttributeValue(data, 'localname'),
 			rangeValuePositions: getXmlAttributeValue(data, 'range-value-positions') === 'true',
 			invalidValues: getXmlAttributeValue(data, 'invalid-values'),
@@ -112,6 +114,7 @@ const getPathRangeIndexConfig = (dbName) => {
 			idxType: 'Path',
 			scalarType: getXmlAttributeValue(data, 'scalar-type'),
 			pathExpression: getXmlAttributeValue(data, 'path-expression'),
+			collation: getXmlAttributeValue(data, 'collation'),
 			rangeValuePositions: getXmlAttributeValue(data, 'range-value-positions') === 'true',
 			invalidValues: getXmlAttributeValue(data, 'invalid-values'),
 		};
@@ -131,6 +134,7 @@ const getFieldRangeIndexConfig = (dbName) => {
 			idxType: 'Field',
 			scalarType: getXmlAttributeValue(data, 'scalar-type'),
 			fieldName: getXmlAttributeValue(data, 'field-name'),
+			collation: getXmlAttributeValue(data, 'collation'),
 			rangeValuePositions: getXmlAttributeValue(data, 'range-value-positions') === 'true',
 			invalidValues: getXmlAttributeValue(data, 'invalid-values'),
 		};

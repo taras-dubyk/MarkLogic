@@ -71,7 +71,7 @@ const elementRangeIndexesMapper = (data, varName) => {
 		mapString(data.scalarType),
 		mapString(data.namespaceURI),
 		mapString(data.localname),
-		mapString(''),
+		mapString(data.scalarType === 'string' ? data.collation : ''),
 		mapBoolean(data.rangeValuePositions),
 		mapString(data.invalidValues),
 	];
@@ -87,7 +87,7 @@ const elementAttributesRangeIndexesMapper = (data, varName) => {
 		mapString(data.parentLocalname),
 		mapString(data.namespaceURI),
 		mapString(data.localname),
-		mapString(''),
+		mapString(data.scalarType === 'string' ? data.collation : ''),
 		mapBoolean(data.rangeValuePositions),
 		mapString(data.invalidValues),
 	];
@@ -100,7 +100,7 @@ const rangePathIndexesMapper = (data, varName) => {
 	const funcArguments = [
 		'dbId',
 		mapString(data.pathExpression),
-		mapString(''),
+		mapString(data.scalarType === 'string' ? data.collation : ''),
 		mapBoolean(data.rangeValuePositions),
 		mapString(data.invalidValues),
 	];
@@ -113,7 +113,7 @@ const rangeFieldIndexesMapper = (data, varName) => {
 	const funcArguments = [
 		mapString(data.scalarType),
 		mapString(data.fieldName),
-		mapString(''),
+		mapString(data.scalarType === 'string' ? data.collation : ''),
 		mapBoolean(data.rangeValuePositions),
 		mapString(data.invalidValues),
 	];
@@ -215,11 +215,11 @@ const getIndexFuncStatement = (varName, funcName, funcArguments) => {
 	return `const ${varName} = admin.${funcName}(${funcArguments.join(', ')});`;
 };
 
-const mapString = (value) => {
+const mapString = (value = '') => {
 	return `"${value}"`;
 }
 
-const mapInteger = (value) => {
+const mapInteger = (value = 0) => {
 	return parseInt(value);
 }
 

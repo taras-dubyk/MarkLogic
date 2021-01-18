@@ -679,6 +679,16 @@ making sure that you maintain a proper JSON format.
 						}
 					},
 					{
+						"propertyName": "Collation",
+						"propertyKeyword": "collation",
+						"propertyTooltip": "A collation URI for string comparisons",
+						"propertyType": "text",
+						"dependency": {
+							"key": "scalarType",
+							"value": "string"
+						}
+					},
+					{
 						"propertyName": "Range value positions",
 						"propertyKeyword": "rangeValuePositions",
 						"propertyTooltip": "Index range value positions for faster near searches involving range queries (slower document loads and larger database files).",
