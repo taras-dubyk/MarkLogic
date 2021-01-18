@@ -1,5 +1,6 @@
 const { setDependencies, dependencies } = require('./appDependencies');
 const { getDBClient, testConnection, applyScript } = require('./applyToInstanceHelper');
+const { getIndexes } = require('./helpers/indexesHelper');
 
 const setLocalDependencies = ({ lodash }) => _ = lodash;
 let _;
@@ -9,14 +10,18 @@ module.exports = {
 		setDependencies(app);
 		setLocalDependencies(dependencies);
 
-		let { collections, containerData } = data;
+		const { collections, containerData } = data;
+		const dbName = containerData[0].name;
 		logger.clear();
 		try {
-			const script = collections.map(
+			let script = collections.map(
 				collectionSchema => getValidationSchemaData(JSON.parse(collectionSchema))
 			).reduce((script, schemaData) => {
-				return script + '\n\n' + getSchemaInsertStatement(schemaData);
+				return script + '\n\n' + getSchemaInsertStatement(schemaData) + (indexes && '\n\n' + indexes);
 			}, getStartStatements());
+
+			const indexes = getIndexes(containerData[2], dbName);
+			script = script + (indexes && '\n\n' + indexes);
 
 			cb(null, script);
 		} catch(e) {
