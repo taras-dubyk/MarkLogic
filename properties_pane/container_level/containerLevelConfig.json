@@ -669,6 +669,26 @@ making sure that you maintain a proper JSON format.
 						}
 					},
 					{
+						"propertyName": "Field name",
+						"propertyKeyword": "fieldName",
+						"propertyTooltip": "The field name",
+						"propertyType": "text",
+						"dependency": {
+							"key": "idxType",
+							"value": "Field"
+						}
+					},
+					{
+						"propertyName": "Collation",
+						"propertyKeyword": "collation",
+						"propertyTooltip": "A collation URI for string comparisons",
+						"propertyType": "text",
+						"dependency": {
+							"key": "scalarType",
+							"value": "string"
+						}
+					},
+					{
 						"propertyName": "Range value positions",
 						"propertyKeyword": "rangeValuePositions",
 						"propertyTooltip": "Index range value positions for faster near searches involving range queries (slower document loads and larger database files).",
@@ -859,24 +879,19 @@ making sure that you maintain a proper JSON format.
 						}
 					},
 					{
-						"propertyName": "Coord system name",
-						"propertyKeyword": "coordinateSystemName",
-						"propertyTooltip": "",
-						"propertyType": "text"
-					},
-					{
 						"propertyName": "Coord system",
 						"propertyKeyword": "coordinateSystem",
 						"propertyTooltip": "Select from list of options",
 						"propertyType": "select",
-						"defaultValue": "WGS84",
+						"defaultValue": "wgs84",
 						"options": [
-							"WGS84",
-							"ETRS89",
-							"Raw",
-							"WGS84 (double precision)",
-							"ETRS89 (double precision)",
-							"Raw (double precision)"
+							"",
+							{ "name": "WGS84", "value": "wgs84" },
+							{ "name": "ETRS89", "value": "etrs89" },
+							{ "name": "Raw", "value": "raw" },
+							{ "name": "WGS84 (double precision)", "value": "wgs84/double" },
+							{ "name": "ETRS89 (double precision)", "value": "etrs89/double" },
+							{ "name": "Raw (double precision)", "value": "raw/double" }
 						]
 					},
 					{
@@ -890,8 +905,17 @@ making sure that you maintain a proper JSON format.
 							"long-lat-point"
 						],
 						"dependency": {
-							"key": "idxType",
-							"value": "Path"
+							"type": "or",
+							"values": [{
+								"key": "idxType",
+								"value": "Element"
+							},{
+								"key": "idxType",
+								"value": "Path"
+							},{
+								"key": "idxType",
+								"value": "Element child"
+							}]
 						}
 					},
 					{
@@ -932,24 +956,19 @@ making sure that you maintain a proper JSON format.
 						"propertyType": "text"
 					},
 					{
-						"propertyName": "Coord system name",
-						"propertyKeyword": "coordinateSystemName",
-						"propertyTooltip": "",
-						"propertyType": "text"
-					},
-					{
 						"propertyName": "Coord system",
 						"propertyKeyword": "coordinateSystem",
 						"propertyTooltip": "Select from list of options",
 						"propertyType": "select",
-						"defaultValue": "WGS84",
+						"defaultValue": "wgs84",
 						"options": [
-							"WGS84",
-							"ETRS89",
-							"Raw",
-							"WGS84 (double precision)",
-							"ETRS89 (double precision)",
-							"Raw (double precision)"
+							"",
+							{ "name": "WGS84", "value": "wgs84" },
+							{ "name": "ETRS89", "value": "etrs89" },
+							{ "name": "Raw", "value": "raw" },
+							{ "name": "WGS84 (double precision)", "value": "wgs84/double" },
+							{ "name": "ETRS89 (double precision)", "value": "etrs89/double" },
+							{ "name": "Raw (double precision)", "value": "raw/double" }
 						]
 					},
 					{

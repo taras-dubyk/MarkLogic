@@ -1,5 +1,6 @@
 const { setDependencies, dependencies } = require('./appDependencies');
 const { getDBClient, testConnection, applyScript } = require('./applyToInstanceHelper');
+const { getIndexes } = require('./helpers/indexesHelper');
 
 const setLocalDependencies = ({ lodash }) => _ = lodash;
 let _;
@@ -9,14 +10,18 @@ module.exports = {
 		setDependencies(app);
 		setLocalDependencies(dependencies);
 
-		let { collections, containerData } = data;
+		const { collections, containerData } = data;
+		const dbName = containerData[0].name;
 		logger.clear();
 		try {
-			const script = collections.map(
+			let script = collections.map(
 				collectionSchema => getValidationSchemaData(JSON.parse(collectionSchema))
 			).reduce((script, schemaData) => {
 				return script + '\n\n' + getSchemaInsertStatement(schemaData);
 			}, getStartStatements());
+
+			const indexes = getIndexes(containerData[2], dbName);
+			script = script + (indexes && '\n\n' + indexes);
 
 			cb(null, script);
 		} catch(e) {
@@ -73,6 +78,8 @@ module.exports = {
 			await applyScript(client, data.script);
 			cb();
 		} catch(err) {
+			logger.log('error', mapError(err), 'Apply to instance Error');
+			console.log(err);
 			cb(mapError(err));
 		}
 	},
@@ -212,7 +219,7 @@ const mapError = (error) => {
 	}
 
 	return {
-		message: error.message,
+		message: error.message + '\n' + _.get(error, 'body.errorResponse.message', ''),
 		stack: error.stack
 	};
 };
