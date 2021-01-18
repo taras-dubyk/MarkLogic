@@ -895,8 +895,17 @@ making sure that you maintain a proper JSON format.
 							"long-lat-point"
 						],
 						"dependency": {
-							"key": "idxType",
-							"value": "Path"
+							"type": "or",
+							"values": [{
+								"key": "idxType",
+								"value": "Element"
+							},{
+								"key": "idxType",
+								"value": "Path"
+							},{
+								"key": "idxType",
+								"value": "Element child"
+							}]
 						}
 					},
 					{
