@@ -43,6 +43,16 @@
 				"inputKeyword": "database",
 				"inputType": "text",
 				"description": "Optionally specify database name to limit scope of discovery"
+			},
+			{
+				"inputLabel": "Minimum documents per collection",
+				"inputKeyword": "minDocuments",
+				"inputType": "numeric",
+				"description": "Collection will not be sampled if documents count is less than specified",
+				"dependency": {
+					"key": "documentsOrganizing",
+					"value": "collections"
+				}
 			}
 		]
 	},

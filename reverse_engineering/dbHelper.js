@@ -57,15 +57,30 @@ const getDbList = async (dbClient, logger) => {
 	return filteredDBList;
 }
 
-const getDBCollections = async (dbClient, logger) => {
+const getDBCollections = async (dbClient, logger, minDocumentsPerCollection) => {
 	logger.log('info', '', `Getting "${dbClient.connectionParams.database}" collections list started`);
 	const maxCollections = 1000;
 	const getAllCollectionsXQueryLexiconReady = `cts:collections("", "limit=${maxCollections}")`;
+	const getAllCollectionsMinDocumentsXQueryLexiconReady = `cts:collections()!text{.||";"||cts:count(.)}`;
 	const getAllCollectionsXQuery = 'fn:distinct-values(for $c in for $d in xdmp:directory("/", "infinity") return xdmp:document-get-collections(xdmp:node-uri($d)) return $c)';
 
 	let response;
 	try {
-		response = await dbClient.xqueryEval(getAllCollectionsXQueryLexiconReady).result();
+		const minDocuments = parseInt(minDocumentsPerCollection);
+		if (!isNaN(minDocuments)) {
+			const collectionsDocumentsCount = await dbClient.xqueryEval(getAllCollectionsMinDocumentsXQueryLexiconReady).result();
+			if (Array.isArray(collectionsDocumentsCount)) {
+				response = collectionsDocumentsCount.reduce((acc, { value }) => {
+					const [name, documentsCount] = value.split(';');
+					if (parseInt(documentsCount) >= minDocuments) {
+						acc.push({ value: name });
+					}
+					return acc;
+				}, []);
+			}
+		} else {
+			response = await dbClient.xqueryEval(getAllCollectionsXQueryLexiconReady).result();
+		}
 	} catch(err) {
 		logger.log('error', err, 'Getting collections list using collection lexicon');
 		response = await dbClient.xqueryEval(getAllCollectionsXQuery).result();
