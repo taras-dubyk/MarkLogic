@@ -10,10 +10,11 @@ module.exports = {
 		setDependencies(app);
 		setLocalDependencies(dependencies);
 
-		const { collections, containerData } = data;
-		const dbName = containerData[0].name;
-		logger.clear();
 		try {
+			const { collections, containerData } = data;
+			const dbName = _.get(containerData, '[0].name', '');
+			logger.clear();
+			
 			let script = collections.map(
 				collectionSchema => getValidationSchemaData(JSON.parse(collectionSchema))
 			).reduce((script, schemaData) => {

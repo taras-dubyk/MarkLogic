@@ -1,4 +1,8 @@
 const getIndexes = (indexData, dbName) => {
+	if(!indexData) {
+		return '';
+	}
+
 	const alreadyUsedVariableNames = ['admin', 'config', 'dbId'];
 	const rangeIndexes = getRangeIndexes(indexData.rangeIndexes, alreadyUsedVariableNames);
 	const geoPointIndexes = getGeoPointIndexes(indexData.geoPointIndexes, [...alreadyUsedVariableNames, ...rangeIndexes.indexesVarNames]);
