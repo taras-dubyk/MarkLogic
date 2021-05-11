@@ -45,6 +45,12 @@
 				"description": "Optionally specify database name to limit scope of discovery"
 			},
 			{
+				"inputLabel": "Collections",
+				"inputKeyword": "collections",
+				"inputType": "text",
+				"description": "Optionally specify comma separated collection names to limit scope of discovery"
+			},
+			{
 				"inputLabel": "Minimum documents per collection",
 				"inputKeyword": "minDocuments",
 				"inputType": "numeric",

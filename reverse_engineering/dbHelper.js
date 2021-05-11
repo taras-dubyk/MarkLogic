@@ -57,7 +57,7 @@ const getDbList = async (dbClient, logger) => {
 	return filteredDBList;
 }
 
-const getDBCollections = async (dbClient, logger, minDocumentsPerCollection) => {
+const getDBCollections = async (dbClient, logger, minDocumentsPerCollection, collections) => {
 	logger.log('info', '', `Getting "${dbClient.connectionParams.database}" collections list started`);
 	const maxCollections = 1000;
 	const getAllCollectionsXQueryLexiconReady = `cts:collections("", "limit=${maxCollections}")`;
@@ -65,8 +65,12 @@ const getDBCollections = async (dbClient, logger, minDocumentsPerCollection) => 
 	const getAllCollectionsXQuery = 'fn:distinct-values(for $c in for $d in xdmp:directory("/", "infinity") return xdmp:document-get-collections(xdmp:node-uri($d)) return $c)';
 
 	let response;
+	const collectionsNames = collections && collections.split(',').map(item => item.trim());
+	const isCollectionsListSpecified = Array.isArray(collectionsNames) && collectionsNames.length > 0;
+
 	try {
 		const minDocuments = parseInt(minDocumentsPerCollection);
+
 		if (!isNaN(minDocuments)) {
 			const collectionsDocumentsCount = await dbClient.xqueryEval(getAllCollectionsMinDocumentsXQueryLexiconReady).result();
 			if (Array.isArray(collectionsDocumentsCount)) {
@@ -85,7 +89,11 @@ const getDBCollections = async (dbClient, logger, minDocumentsPerCollection) => 
 		logger.log('error', err, 'Getting collections list using collection lexicon');
 		response = await dbClient.xqueryEval(getAllCollectionsXQuery).result();
 	}
-	const collectionsList = Array.isArray(response) ? response.map(({ value }) => value) : [];
+	let collectionsList = Array.isArray(response) ? response.map(({ value }) => value) : [];
+	if (isCollectionsListSpecified) {
+		collectionsList = collectionsList.filter(name => collectionsNames.includes(name));
+	}
+
 	logger.log(
 		'info',
 		{ collectionsNumber: collectionsList.length, collectionsList },
